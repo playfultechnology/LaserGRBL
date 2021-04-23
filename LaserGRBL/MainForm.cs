@@ -894,10 +894,14 @@ namespace LaserGRBL
 		{
 			SetLanguage(new System.Globalization.CultureInfo("tr-TR"));
 		}
-	}
+
+        private void generateToolStripMenuItem_Click(object sender, EventArgs e) {
+            GenerateForm.CreateAndShowDialog(this, Core);
+        }
+    }
 
 
-	public class MMnRenderer : ToolStripProfessionalRenderer
+    public class MMnRenderer : ToolStripProfessionalRenderer
 	{
 		public MMnRenderer() : base(new CustomMenuColor()) { }
 

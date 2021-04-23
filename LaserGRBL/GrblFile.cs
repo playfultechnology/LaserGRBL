@@ -132,8 +132,37 @@ namespace LaserGRBL
 			RiseOnFileLoaded(filename, elapsed);
 		}
 
+        public void LoadGCodeString(string gCode, bool append) {
+            RiseOnFileLoading("GCode String");
+            long start = Tools.HiResTimer.TotalMilliseconds;
 
-		private abstract class ColorSegment
+            if (!append)
+                list.Clear();
+
+            // Copy the string into a memory stream for ease of access
+            var stream = new System.IO.MemoryStream();
+            var writer = new System.IO.StreamWriter(stream);
+            writer.Write(gCode);
+            writer.Flush();
+            stream.Position = 0;
+
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(stream)) {
+                string line = null;
+                while ((line = sr.ReadLine()) != null)
+                    if ((line = line.Trim()).Length > 0) {
+                        GrblCommand cmd = new GrblCommand(line);
+                        if (!cmd.IsEmpty)
+                            list.Add(cmd);
+                    }
+            }
+
+            Analyze();
+            long elapsed = Tools.HiResTimer.TotalMilliseconds - start;
+
+            RiseOnFileLoaded("GCode String", elapsed);
+        }
+
+        private abstract class ColorSegment
 		{
 			public int mColor { get; set; }
 			protected int mPixLen;

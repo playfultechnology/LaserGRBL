@@ -669,7 +669,16 @@ namespace LaserGRBL
 			}
 		}
 
-		private ImageCodecInfo GetEncoder(ImageFormat format)
+        public void OpenString(string gCode = null, bool append = false) {
+            // Check whether it's ok to reset the list of queued commands
+            if (!CanLoadNewFile) return;
+            try {
+                file.LoadGCodeString(gCode, append);
+            }
+            catch (Exception ex) { Logger.LogException("GCodeImport", ex); }
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
 		{
 			ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
 			foreach (ImageCodecInfo codec in codecs)
