@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.Linq;
 
 namespace LaserGRBL {
     public partial class GenerateForm : Form {
@@ -90,21 +89,23 @@ namespace LaserGRBL {
             mCore.OpenString(gcodeString.ToString());
         }
 
-        /*
+        
         private void textBox_Font_Click(object sender, EventArgs e) {
             System.Windows.Forms.FontDialog fontSelectionForm = new System.Windows.Forms.FontDialog();
             if (fontSelectionForm.ShowDialog() == DialogResult.OK) {
-                fontName = fontSelectionForm.Font.Name.ToString();
-                fontStyle = 0;
+                string fontName = fontSelectionForm.Font.Name.ToString();
+                int fontStyle = 0;
                 if (fontSelectionForm.Font.Bold) { fontStyle += 1; }
                 if (fontSelectionForm.Font.Italic) { fontStyle += 2; }
                 if (fontSelectionForm.Font.Underline) { fontStyle += 4; }
                 if (fontSelectionForm.Font.Strikeout) { fontStyle += 8; }
-                fontSize = fontSelectionForm.Font.SizeInPoints;
-                textBox_Font.Text = fontName + ", Type: " + fontStyle + ", Size: " + fontSize;
+                float fontSize = fontSelectionForm.Font.SizeInPoints;
+
+                textBox_Font.Text = fontName;
+                numericUpDown_FontSize.Value = (decimal)fontSize;
             }
         }
-        */
+        
 
         private string CreateGcodeFromText(string text, FontFamily fontFamily, int fontStyle, float fontSize, PointF origin, ContentAlignment alignment = ContentAlignment.BottomLeft) {
 
@@ -128,7 +129,7 @@ namespace LaserGRBL {
             return gcode;
         }
 
-        private static string CreateGcodeFromGraphicsPath(GraphicsPath gp, PointF origin, ContentAlignment alignment = ContentAlignment.BottomLeft) {
+        private static string CreateGcodeFromGraphicsPath(GraphicsPath gp, PointF origin, ContentAlignment alignment = ContentAlignment.BottomLeft, int power=500, int speed=800, string mode="M4") {
 
             PointF[] PathPoints = gp.PathPoints;
             byte[] pathtypes = gp.PathTypes;
@@ -137,17 +138,7 @@ namespace LaserGRBL {
 
             StringBuilder sb = new StringBuilder();
 
-            double x, y = 0, XSave = 0, YSave = 0;
-            double XOffSet = 0, YOffSet = 0, Xscale = 1, Yscale = 1;
-            byte ZType;
-            //ContentAlignment alignment = ContentAlignment.BottomLeft;
-            //PointF position = new PointF(0, 0);
-
-            int power = 500;
-            int speed = 800;
-            string mode = "4";
-
-            sb.AppendLine(string.Format("M{0} S{1}", mode, 0));
+            sb.AppendLine(string.Format("{0} S{1}", mode, 0));
 
             // Loop through all the points to find the max/min extents (surely there's got to be a better way to do this?!)
             double xMin = double.MaxValue, xMax = double.MinValue, yMin = double.MaxValue, yMax = double.MinValue;
@@ -158,6 +149,8 @@ namespace LaserGRBL {
                 yMax = Math.Max(PathPoints[i].Y, yMax);
             }
 
+            // Calculate offset based on extents of path, and chosen alignment
+            double XOffSet = 0, YOffSet = 0;
             switch (alignment) {
                 case ContentAlignment.BottomLeft:
                     XOffSet = -xMin;
@@ -198,28 +191,36 @@ namespace LaserGRBL {
             }
 
             // Font is measured in "points", but gcode is in mm
-            Xscale = 0.352778;
-            Yscale = 0.352778;
+            double Xscale = 0.352778, Yscale = 0.352778;
 
+            // We store the start coords of each segment in order to be able close paths back to start point after final segment 
+            double XSave = 0, YSave = 0;
+            byte pathType;
+
+            // Loop through and process all points in the path
             for (int i = 0; i < PathPoints.Length; i++) {
                 if (PathPoints[i].IsEmpty == false) {
-                    x = PathPoints[i].X;
-                    // Offset is measured in points, from the original graphic data
+
+                    double x = PathPoints[i].X;
+                    // Offset is measured in points, calcaulted from the original graphic data
                     x = x + XOffSet;
                     x = x * Xscale;
                     // Position is measured in mm, as per gcode standards
                     x += origin.X;
-                    x = Math.Round(x, 4); // calc x
-                    y = PathPoints[i].Y;
+                    x = Math.Round(x, 4); // Don't need full precision
+
+                    double y = PathPoints[i].Y;
                     y = y + YOffSet;
                     y = y * Yscale;
                     y -= origin.Y;
-                    y = Math.Round(y, 4);
-                    y = 0 - y; // calc y
-                               // https://docs.microsoft.com/en-us/dotnet/api/system.drawing.drawing2d.pathpointtype?view=netframework-4.8
-                    ZType = pathtypes[i]; // Bit 6: 1=Last line in chr. - Byte: 0=First line, 1=Stright line, 3=Curve
+                    y = Math.Round(y, 4); // Don't need full precision
+                    y = 0 - y; // Invert y
+
+                    // https://docs.microsoft.com/en-us/dotnet/api/system.drawing.drawing2d.pathpointtype?view=netframework-4.8
+                    pathType = pathtypes[i]; // 0=Start of line, 1=Straight line, 3=Curve
                     // Start point
-                    if (ZType == 0) {
+                    if (pathType == 0) {
+                        // Save the coordinate value so we can join back again at the end
                         XSave = x;
                         YSave = y;
 
@@ -229,11 +230,13 @@ namespace LaserGRBL {
                         // Move to the start position
                         sb.AppendLine(string.Format("G00X{0}Y{1}", x, y));
                         // Now turn the laser on
-                        sb.AppendLine(string.Format("M{0} S{1}", mode, power));
+                        sb.AppendLine(string.Format("{0} S{1}", mode, power));
                     }
-                    else if (ZType < 128) {
+                    // Straight line or curve segment
+                    else if (pathType < 128) {
                         sb.AppendLine(string.Format("G01X{0}Y{1}F{2}", x, y, speed));
                     }
+                    // End segment
                     else {
                         sb.AppendLine("; Figure End");
                         sb.AppendLine(string.Format("G01X{0}Y{1}F{2}", x, y, speed));
@@ -284,9 +287,9 @@ namespace LaserGRBL {
 
             string gcode = CreateGcodeFromText(
                textBox_Input.Text,
-                new FontFamily("Microsoft Sans Serif"),
+                new FontFamily(textBox_Font.Text),
                 0,
-                6,
+                (float)numericUpDown_FontSize.Value,
                 new PointF((float)numericUpDown_TextX.Value, (float)numericUpDown_TextY.Value),
                 contentAlignment);
 

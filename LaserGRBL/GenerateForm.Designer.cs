@@ -80,6 +80,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.BtnGenerate_Text = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown_FontSize = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineSpeed)).BeginInit();
@@ -100,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TextY)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -558,6 +561,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.numericUpDown_FontSize);
             this.tabPage3.Controls.Add(this.groupBox_TextPosition);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.textBox_Font);
@@ -770,9 +775,10 @@
             // 
             this.textBox_Font.Location = new System.Drawing.Point(68, 108);
             this.textBox_Font.Name = "textBox_Font";
-            this.textBox_Font.Size = new System.Drawing.Size(287, 20);
+            this.textBox_Font.Size = new System.Drawing.Size(100, 20);
             this.textBox_Font.TabIndex = 43;
-            this.textBox_Font.Text = "Microsoft Sans Serif, Type: 0, Size: 8.25";
+            this.textBox_Font.Text = "Microsoft Sans Serif";
+            this.textBox_Font.Click += new System.EventHandler(this.textBox_Font_Click);
             // 
             // label10
             // 
@@ -819,6 +825,37 @@
             this.label9.TabIndex = 38;
             this.label9.Text = "Generate text\r\n";
             // 
+            // numericUpDown_FontSize
+            // 
+            this.numericUpDown_FontSize.Location = new System.Drawing.Point(235, 108);
+            this.numericUpDown_FontSize.Maximum = new decimal(new int[] {
+            192,
+            0,
+            0,
+            0});
+            this.numericUpDown_FontSize.Minimum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.numericUpDown_FontSize.Name = "numericUpDown_FontSize";
+            this.numericUpDown_FontSize.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown_FontSize.TabIndex = 39;
+            this.numericUpDown_FontSize.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(201, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 13);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "Size";
+            // 
             // GenerateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -852,6 +889,7 @@
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -914,5 +952,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_SquaresSpeedMin;
         private System.Windows.Forms.NumericUpDown numericUpDown_SquaresPowerMax;
         private System.Windows.Forms.NumericUpDown numericUpDown_SquaresPowerMin;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FontSize;
     }
 }
