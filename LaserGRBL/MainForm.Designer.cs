@@ -115,6 +115,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.manualsDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.firmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questionMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnAutoUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.MnNotifyNewVersion = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,7 +135,7 @@
             this.licenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AwakeTimer = new System.Windows.Forms.Timer(this.components);
             this.MultipleInstanceTimer = new System.Windows.Forms.Timer(this.components);
-            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateTestGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -312,6 +313,7 @@
             this.MnGrblConfig,
             this.settingsToolStripMenuItem,
             this.MnMaterialDB,
+            this.generateTestGridToolStripMenuItem,
             this.toolStripSeparator2,
             this.MnHotkeys,
             this.toolStripMenuItem6,
@@ -739,6 +741,12 @@
             this.firmwareToolStripMenuItem.Name = "firmwareToolStripMenuItem";
             this.firmwareToolStripMenuItem.Click += new System.EventHandler(this.firmwareToolStripMenuItem_Click);
             // 
+            // generateToolStripMenuItem
+            // 
+            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
+            resources.ApplyResources(this.generateToolStripMenuItem, "generateToolStripMenuItem");
+            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
+            // 
             // questionMarkToolStripMenuItem
             // 
             this.questionMarkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -868,11 +876,10 @@
             this.MultipleInstanceTimer.Interval = 1000;
             this.MultipleInstanceTimer.Tick += new System.EventHandler(this.MultipleInstanceTimer_Tick);
             // 
-            // generateToolStripMenuItem
+            // generateTestGridToolStripMenuItem
             // 
-            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            resources.ApplyResources(this.generateToolStripMenuItem, "generateToolStripMenuItem");
-            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
+            this.generateTestGridToolStripMenuItem.Name = "generateTestGridToolStripMenuItem";
+            resources.ApplyResources(this.generateTestGridToolStripMenuItem, "generateTestGridToolStripMenuItem");
             // 
             // MainForm
             // 
@@ -1009,6 +1016,7 @@
         private System.Windows.Forms.ToolStripMenuItem greekToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem turkishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateTestGridToolStripMenuItem;
     }
 }
 
