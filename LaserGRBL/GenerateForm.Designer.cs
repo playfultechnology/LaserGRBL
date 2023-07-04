@@ -58,6 +58,8 @@
             this.numericUpDown_SquaresPowerSteps = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numericUpDown_FontSize = new System.Windows.Forms.NumericUpDown();
             this.groupBox_TextPosition = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -80,8 +82,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.BtnGenerate_Text = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.numericUpDown_FontSize = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
+            this.numericUpDown_SquaresSpacing = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_SquaresHeight = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.numericUpDown_SquaresWidth = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineSpeed)).BeginInit();
@@ -97,12 +103,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpeedSteps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresPowerSteps)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).BeginInit();
             this.groupBox_TextPosition.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TextX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TextY)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -321,6 +330,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numericUpDown_SquaresWidth);
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.numericUpDown_SquaresSpacing);
+            this.tabPage2.Controls.Add(this.numericUpDown_SquaresHeight);
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.numericUpDown_SquaresSpeedMax);
             this.tabPage2.Controls.Add(this.numericUpDown_SquaresSpeedMin);
             this.tabPage2.Controls.Add(this.numericUpDown_SquaresPowerMax);
@@ -578,6 +593,37 @@
             this.tabPage3.Text = "Text";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(201, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 13);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "Size";
+            // 
+            // numericUpDown_FontSize
+            // 
+            this.numericUpDown_FontSize.Location = new System.Drawing.Point(235, 108);
+            this.numericUpDown_FontSize.Maximum = new decimal(new int[] {
+            192,
+            0,
+            0,
+            0});
+            this.numericUpDown_FontSize.Minimum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.numericUpDown_FontSize.Name = "numericUpDown_FontSize";
+            this.numericUpDown_FontSize.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown_FontSize.TabIndex = 39;
+            this.numericUpDown_FontSize.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            // 
             // groupBox_TextPosition
             // 
             this.groupBox_TextPosition.Controls.Add(this.label21);
@@ -825,36 +871,86 @@
             this.label9.TabIndex = 38;
             this.label9.Text = "Generate text\r\n";
             // 
-            // numericUpDown_FontSize
+            // numericUpDown_SquaresSpacing
             // 
-            this.numericUpDown_FontSize.Location = new System.Drawing.Point(235, 108);
-            this.numericUpDown_FontSize.Maximum = new decimal(new int[] {
-            192,
+            this.numericUpDown_SquaresSpacing.DecimalPlaces = 1;
+            this.numericUpDown_SquaresSpacing.Location = new System.Drawing.Point(476, 82);
+            this.numericUpDown_SquaresSpacing.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
-            this.numericUpDown_FontSize.Minimum = new decimal(new int[] {
-            6,
-            0,
-            0,
-            0});
-            this.numericUpDown_FontSize.Name = "numericUpDown_FontSize";
-            this.numericUpDown_FontSize.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown_FontSize.TabIndex = 39;
-            this.numericUpDown_FontSize.Value = new decimal(new int[] {
-            6,
+            this.numericUpDown_SquaresSpacing.Name = "numericUpDown_SquaresSpacing";
+            this.numericUpDown_SquaresSpacing.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresSpacing.TabIndex = 64;
+            this.numericUpDown_SquaresSpacing.Value = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             // 
-            // label12
+            // numericUpDown_SquaresHeight
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(201, 110);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(27, 13);
-            this.label12.TabIndex = 46;
-            this.label12.Text = "Size";
+            this.numericUpDown_SquaresHeight.DecimalPlaces = 1;
+            this.numericUpDown_SquaresHeight.Location = new System.Drawing.Point(302, 82);
+            this.numericUpDown_SquaresHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_SquaresHeight.Name = "numericUpDown_SquaresHeight";
+            this.numericUpDown_SquaresHeight.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresHeight.TabIndex = 63;
+            this.numericUpDown_SquaresHeight.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(523, 84);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(69, 13);
+            this.label23.TabIndex = 62;
+            this.label23.Text = "spacing (mm)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(349, 84);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 13);
+            this.label24.TabIndex = 61;
+            this.label24.Text = "height (mm)";
+            // 
+            // numericUpDown_SquaresWidth
+            // 
+            this.numericUpDown_SquaresWidth.DecimalPlaces = 1;
+            this.numericUpDown_SquaresWidth.Location = new System.Drawing.Point(302, 108);
+            this.numericUpDown_SquaresWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_SquaresWidth.Name = "numericUpDown_SquaresWidth";
+            this.numericUpDown_SquaresWidth.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresWidth.TabIndex = 66;
+            this.numericUpDown_SquaresWidth.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(349, 110);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(57, 13);
+            this.label25.TabIndex = 65;
+            this.label25.Text = "width (mm)";
             // 
             // GenerateForm
             // 
@@ -882,6 +978,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresPowerSteps)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).EndInit();
             this.groupBox_TextPosition.ResumeLayout(false);
             this.groupBox_TextPosition.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TextX)).EndInit();
@@ -889,7 +986,9 @@
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FontSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -954,5 +1053,11 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_SquaresPowerMin;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numericUpDown_FontSize;
+        private System.Windows.Forms.NumericUpDown numericUpDown_SquaresWidth;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.NumericUpDown numericUpDown_SquaresSpacing;
+        private System.Windows.Forms.NumericUpDown numericUpDown_SquaresHeight;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
     }
 }

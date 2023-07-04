@@ -47,8 +47,13 @@ namespace LaserGRBL {
 
             StringBuilder gcodeString = new StringBuilder();
 
-            float squareWidth = 8, squareHeight = 3;
-            float padding = 1;
+            //float squareWidth = 8, squareHeight = 3;
+            //float padding = 1;
+
+            float squareWidth = (float)numericUpDown_SquaresWidth.Value;
+            float squareHeight = (float)numericUpDown_SquaresHeight.Value;
+            float padding = (float)numericUpDown_SquaresSpacing.Value;
+
 
             // Draw the squares
             for (int F = 0; F < numericUpDown_SquaresSpeedSteps.Value + 1; F++) {
@@ -70,21 +75,21 @@ namespace LaserGRBL {
                     gcodeString.AppendLine("M5 S0");
                 }
             }
-            
+
             // Add the labels
             // X axis labels
             for (int S = 0; S < numericUpDown_SquaresPowerSteps.Value + 1; S++) {
-                gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:0.#}", (decimal)numericUpDown_SquaresPowerMin.Value + S * powerIncrement), new FontFamily("Microsoft Sans Serif"), 0, 6, new PointF(S*(squareWidth+padding) + squareWidth/2, (float)(numericUpDown_SquaresSpeedSteps.Value+1) * (squareHeight+ padding)), ContentAlignment.BottomCenter));
+                gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:0.#}", (decimal)numericUpDown_SquaresPowerMin.Value + S * powerIncrement), new FontFamily("Microsoft Sans Serif"), 0, 6, new PointF(S*(squareWidth+padding) + squareWidth/2, (float)(numericUpDown_SquaresSpeedSteps.Value+1) * (squareHeight+ padding)), ContentAlignment.BottomCenter, 100, 2000, "M4"));
             }
             // X axis title
-            gcodeString.AppendLine(CreateGcodeFromText("Power", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_SquaresPowerSteps.Value) * (squareWidth + padding)/2, (float)(numericUpDown_SquaresSpeedSteps.Value + 2) * (squareHeight + padding)), ContentAlignment.BottomCenter));
+            gcodeString.AppendLine(CreateGcodeFromText("Power", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_SquaresPowerSteps.Value) * (squareWidth + padding)/2, (float)(numericUpDown_SquaresSpeedSteps.Value + 2) * (squareHeight + padding)), ContentAlignment.BottomCenter, 100, 2000, "M4"));
 
             // Y axis labels
             for (int F = 0; F < numericUpDown_SquaresSpeedSteps.Value + 1; F++) {
-                gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:0.#}", (decimal)numericUpDown_SquaresSpeedMin.Value + F * speedIncrement), new FontFamily("Microsoft Sans Serif"), 0, 6, new PointF((float)(numericUpDown_SquaresPowerSteps.Value + 1)*(squareWidth + padding), (float)(F * (squareHeight + padding) + squareHeight / 2)), ContentAlignment.MiddleLeft));
+                gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:0.#}", (decimal)numericUpDown_SquaresSpeedMin.Value + F * speedIncrement), new FontFamily("Microsoft Sans Serif"), 0, 6, new PointF((float)(numericUpDown_SquaresPowerSteps.Value + 1)*(squareWidth + padding), (float)(F * (squareHeight + padding) + squareHeight / 2)), ContentAlignment.MiddleLeft, 100, 2000, "M4"));
             }
             // X axis title
-            gcodeString.AppendLine(CreateGcodeFromText("Speed", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_SquaresPowerSteps.Value + 2) * (squareWidth + padding), (float)(numericUpDown_SquaresSpeedSteps.Value + 1) / 2 * (squareHeight + padding)), ContentAlignment.BottomLeft));
+            gcodeString.AppendLine(CreateGcodeFromText("Speed", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_SquaresPowerSteps.Value + 2) * (squareWidth + padding), (float)(numericUpDown_SquaresSpeedSteps.Value + 1) / 2 * (squareHeight + padding)), ContentAlignment.BottomLeft, 100, 2000, "M4"));
 
             mCore.OpenString(gcodeString.ToString());
         }
@@ -107,7 +112,7 @@ namespace LaserGRBL {
         }
         
 
-        private string CreateGcodeFromText(string text, FontFamily fontFamily, int fontStyle, float fontSize, PointF origin, ContentAlignment alignment = ContentAlignment.BottomLeft) {
+        private string CreateGcodeFromText(string text, FontFamily fontFamily, int fontStyle, float fontSize, PointF origin, ContentAlignment alignment = ContentAlignment.BottomLeft, int power= 500, int speed = 800, string mode = "M4") {
 
             if (text == "") { return ""; }
 
@@ -120,7 +125,7 @@ namespace LaserGRBL {
             graphicsPath.CloseAllFigures();
             g.DrawPath(new Pen(Color.Black, 0), graphicsPath);
 
-            string gcode = CreateGcodeFromGraphicsPath(graphicsPath, origin, alignment);
+            string gcode = CreateGcodeFromGraphicsPath(graphicsPath, origin, alignment, power, speed, mode);
 
             // Cleanup
             graphicsPath.Dispose();
