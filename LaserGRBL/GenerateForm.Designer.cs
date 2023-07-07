@@ -41,6 +41,12 @@
             this.numericUpDown__NumLines = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numericUpDown_SquaresWidth = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.numericUpDown_SquaresSpacing = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_SquaresHeight = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.numericUpDown_SquaresSpeedMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_SquaresSpeedMin = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_SquaresPowerMax = new System.Windows.Forms.NumericUpDown();
@@ -82,12 +88,35 @@
             this.label11 = new System.Windows.Forms.Label();
             this.BtnGenerate_Text = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.numericUpDown_SquaresSpacing = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_SquaresHeight = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.numericUpDown_SquaresWidth = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.numericUpDown_EngraveSquareWidth = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.numericUpDown_EngraveSquareSpacing = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_EngraveSquareHeight = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.numericUpDown_EngraveSpeedMax = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_EngraveSpeedMin = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_EngravePowerMax = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_EngravePowerMin = new System.Windows.Forms.NumericUpDown();
+            this.Btn_GenerateEngravingSquares = new System.Windows.Forms.Button();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.numericUpDown_EngraveSpeedSteps = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.numericUpDown_EngravePowerSteps = new System.Windows.Forms.NumericUpDown();
+            this.label37 = new System.Windows.Forms.Label();
+            this.numericUpDown_EngraveLineInterval = new System.Windows.Forms.NumericUpDown();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label_EngraveLineInterval = new System.Windows.Forms.Label();
+            this.label_EngraveDPI = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineSpeed)).BeginInit();
@@ -96,6 +125,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown__NumLines)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpeedMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpeedMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresPowerMax)).BeginInit();
@@ -109,9 +141,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TextY)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareSpacing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedSteps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerSteps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveLineInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -119,6 +159,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -214,15 +255,15 @@
             // 
             // numericUpDown_lineSpacing
             // 
-            this.numericUpDown_lineSpacing.DecimalPlaces = 1;
-            this.numericUpDown_lineSpacing.Location = new System.Drawing.Point(320, 95);
-            this.numericUpDown_lineSpacing.Minimum = new decimal(new int[] {
+            this.numericUpDown_lineSpacing.DecimalPlaces = 4;
+            this.numericUpDown_lineSpacing.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            0});
+            65536});
+            this.numericUpDown_lineSpacing.Location = new System.Drawing.Point(320, 95);
             this.numericUpDown_lineSpacing.Name = "numericUpDown_lineSpacing";
-            this.numericUpDown_lineSpacing.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_lineSpacing.Size = new System.Drawing.Size(59, 20);
             this.numericUpDown_lineSpacing.TabIndex = 60;
             this.numericUpDown_lineSpacing.Value = new decimal(new int[] {
             1,
@@ -269,7 +310,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(367, 97);
+            this.label16.Location = new System.Drawing.Point(381, 97);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(50, 13);
             this.label16.TabIndex = 56;
@@ -357,8 +398,89 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(632, 214);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Squares";
+            this.tabPage2.Text = "Cut";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown_SquaresWidth
+            // 
+            this.numericUpDown_SquaresWidth.DecimalPlaces = 1;
+            this.numericUpDown_SquaresWidth.Location = new System.Drawing.Point(302, 108);
+            this.numericUpDown_SquaresWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_SquaresWidth.Name = "numericUpDown_SquaresWidth";
+            this.numericUpDown_SquaresWidth.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresWidth.TabIndex = 66;
+            this.numericUpDown_SquaresWidth.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(349, 110);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(57, 13);
+            this.label25.TabIndex = 65;
+            this.label25.Text = "width (mm)";
+            // 
+            // numericUpDown_SquaresSpacing
+            // 
+            this.numericUpDown_SquaresSpacing.DecimalPlaces = 1;
+            this.numericUpDown_SquaresSpacing.Location = new System.Drawing.Point(302, 133);
+            this.numericUpDown_SquaresSpacing.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_SquaresSpacing.Name = "numericUpDown_SquaresSpacing";
+            this.numericUpDown_SquaresSpacing.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresSpacing.TabIndex = 64;
+            this.numericUpDown_SquaresSpacing.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_SquaresHeight
+            // 
+            this.numericUpDown_SquaresHeight.DecimalPlaces = 1;
+            this.numericUpDown_SquaresHeight.Location = new System.Drawing.Point(302, 82);
+            this.numericUpDown_SquaresHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_SquaresHeight.Name = "numericUpDown_SquaresHeight";
+            this.numericUpDown_SquaresHeight.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_SquaresHeight.TabIndex = 63;
+            this.numericUpDown_SquaresHeight.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(349, 135);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(69, 13);
+            this.label23.TabIndex = 62;
+            this.label23.Text = "spacing (mm)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(349, 84);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 13);
+            this.label24.TabIndex = 61;
+            this.label24.Text = "height (mm)";
             // 
             // numericUpDown_SquaresSpeedMax
             // 
@@ -506,7 +628,7 @@
             this.numericUpDown_SquaresSpeedSteps.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown_SquaresSpeedSteps.TabIndex = 42;
             this.numericUpDown_SquaresSpeedSteps.Value = new decimal(new int[] {
-            4,
+            5,
             0,
             0,
             0});
@@ -559,7 +681,7 @@
             this.numericUpDown_SquaresPowerSteps.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown_SquaresPowerSteps.TabIndex = 35;
             this.numericUpDown_SquaresPowerSteps.Value = new decimal(new int[] {
-            10,
+            9,
             0,
             0,
             0});
@@ -611,7 +733,7 @@
             0,
             0});
             this.numericUpDown_FontSize.Minimum = new decimal(new int[] {
-            6,
+            2,
             0,
             0,
             0});
@@ -871,86 +993,402 @@
             this.label9.TabIndex = 38;
             this.label9.Text = "Generate text\r\n";
             // 
-            // numericUpDown_SquaresSpacing
+            // tabPage4
             // 
-            this.numericUpDown_SquaresSpacing.DecimalPlaces = 1;
-            this.numericUpDown_SquaresSpacing.Location = new System.Drawing.Point(476, 82);
-            this.numericUpDown_SquaresSpacing.Minimum = new decimal(new int[] {
+            this.tabPage4.Controls.Add(this.label_EngraveDPI);
+            this.tabPage4.Controls.Add(this.label_EngraveLineInterval);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveLineInterval);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSquareWidth);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSquareSpacing);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSquareHeight);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.label28);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSpeedMax);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSpeedMin);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngravePowerMax);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngravePowerMin);
+            this.tabPage4.Controls.Add(this.Btn_GenerateEngravingSquares);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Controls.Add(this.label30);
+            this.tabPage4.Controls.Add(this.label31);
+            this.tabPage4.Controls.Add(this.label32);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngraveSpeedSteps);
+            this.tabPage4.Controls.Add(this.label33);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.numericUpDown_EngravePowerSteps);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(632, 214);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Engrave";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown_EngraveSquareWidth
+            // 
+            this.numericUpDown_EngraveSquareWidth.DecimalPlaces = 1;
+            this.numericUpDown_EngraveSquareWidth.Location = new System.Drawing.Point(302, 108);
+            this.numericUpDown_EngraveSquareWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown_SquaresSpacing.Name = "numericUpDown_SquaresSpacing";
-            this.numericUpDown_SquaresSpacing.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDown_SquaresSpacing.TabIndex = 64;
-            this.numericUpDown_SquaresSpacing.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown_SquaresHeight
-            // 
-            this.numericUpDown_SquaresHeight.DecimalPlaces = 1;
-            this.numericUpDown_SquaresHeight.Location = new System.Drawing.Point(302, 82);
-            this.numericUpDown_SquaresHeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_SquaresHeight.Name = "numericUpDown_SquaresHeight";
-            this.numericUpDown_SquaresHeight.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDown_SquaresHeight.TabIndex = 63;
-            this.numericUpDown_SquaresHeight.Value = new decimal(new int[] {
+            this.numericUpDown_EngraveSquareWidth.Name = "numericUpDown_EngraveSquareWidth";
+            this.numericUpDown_EngraveSquareWidth.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_EngraveSquareWidth.TabIndex = 66;
+            this.numericUpDown_EngraveSquareWidth.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
             // 
-            // label23
+            // label26
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(523, 84);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(69, 13);
-            this.label23.TabIndex = 62;
-            this.label23.Text = "spacing (mm)";
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(349, 110);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(57, 13);
+            this.label26.TabIndex = 65;
+            this.label26.Text = "width (mm)";
             // 
-            // label24
+            // numericUpDown_EngraveSquareSpacing
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(349, 84);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 13);
-            this.label24.TabIndex = 61;
-            this.label24.Text = "height (mm)";
-            // 
-            // numericUpDown_SquaresWidth
-            // 
-            this.numericUpDown_SquaresWidth.DecimalPlaces = 1;
-            this.numericUpDown_SquaresWidth.Location = new System.Drawing.Point(302, 108);
-            this.numericUpDown_SquaresWidth.Minimum = new decimal(new int[] {
+            this.numericUpDown_EngraveSquareSpacing.DecimalPlaces = 1;
+            this.numericUpDown_EngraveSquareSpacing.Location = new System.Drawing.Point(302, 132);
+            this.numericUpDown_EngraveSquareSpacing.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown_SquaresWidth.Name = "numericUpDown_SquaresWidth";
-            this.numericUpDown_SquaresWidth.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDown_SquaresWidth.TabIndex = 66;
-            this.numericUpDown_SquaresWidth.Value = new decimal(new int[] {
+            this.numericUpDown_EngraveSquareSpacing.Name = "numericUpDown_EngraveSquareSpacing";
+            this.numericUpDown_EngraveSquareSpacing.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_EngraveSquareSpacing.TabIndex = 64;
+            this.numericUpDown_EngraveSquareSpacing.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_EngraveSquareHeight
+            // 
+            this.numericUpDown_EngraveSquareHeight.DecimalPlaces = 1;
+            this.numericUpDown_EngraveSquareHeight.Location = new System.Drawing.Point(302, 82);
+            this.numericUpDown_EngraveSquareHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSquareHeight.Name = "numericUpDown_EngraveSquareHeight";
+            this.numericUpDown_EngraveSquareHeight.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_EngraveSquareHeight.TabIndex = 63;
+            this.numericUpDown_EngraveSquareHeight.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
             // 
-            // label25
+            // label27
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(349, 110);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(57, 13);
-            this.label25.TabIndex = 65;
-            this.label25.Text = "width (mm)";
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(349, 134);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(69, 13);
+            this.label27.TabIndex = 62;
+            this.label27.Text = "spacing (mm)";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(349, 84);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(61, 13);
+            this.label28.TabIndex = 61;
+            this.label28.Text = "height (mm)";
+            // 
+            // numericUpDown_EngraveSpeedMax
+            // 
+            this.numericUpDown_EngraveSpeedMax.Location = new System.Drawing.Point(126, 129);
+            this.numericUpDown_EngraveSpeedMax.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSpeedMax.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSpeedMax.Name = "numericUpDown_EngraveSpeedMax";
+            this.numericUpDown_EngraveSpeedMax.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDown_EngraveSpeedMax.TabIndex = 52;
+            this.numericUpDown_EngraveSpeedMax.Value = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_EngraveSpeedMin
+            // 
+            this.numericUpDown_EngraveSpeedMin.Location = new System.Drawing.Point(36, 129);
+            this.numericUpDown_EngraveSpeedMin.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSpeedMin.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSpeedMin.Name = "numericUpDown_EngraveSpeedMin";
+            this.numericUpDown_EngraveSpeedMin.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDown_EngraveSpeedMin.TabIndex = 51;
+            this.numericUpDown_EngraveSpeedMin.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_EngravePowerMax
+            // 
+            this.numericUpDown_EngravePowerMax.Location = new System.Drawing.Point(124, 82);
+            this.numericUpDown_EngravePowerMax.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngravePowerMax.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngravePowerMax.Name = "numericUpDown_EngravePowerMax";
+            this.numericUpDown_EngravePowerMax.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDown_EngravePowerMax.TabIndex = 50;
+            this.numericUpDown_EngravePowerMax.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_EngravePowerMin
+            // 
+            this.numericUpDown_EngravePowerMin.Location = new System.Drawing.Point(36, 81);
+            this.numericUpDown_EngravePowerMin.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngravePowerMin.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngravePowerMin.Name = "numericUpDown_EngravePowerMin";
+            this.numericUpDown_EngravePowerMin.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDown_EngravePowerMin.TabIndex = 49;
+            this.numericUpDown_EngravePowerMin.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // Btn_GenerateEngravingSquares
+            // 
+            this.Btn_GenerateEngravingSquares.Location = new System.Drawing.Point(550, 181);
+            this.Btn_GenerateEngravingSquares.Name = "Btn_GenerateEngravingSquares";
+            this.Btn_GenerateEngravingSquares.Size = new System.Drawing.Size(75, 23);
+            this.Btn_GenerateEngravingSquares.TabIndex = 48;
+            this.Btn_GenerateEngravingSquares.Text = "Generate";
+            this.Btn_GenerateEngravingSquares.UseVisualStyleBackColor = true;
+            this.Btn_GenerateEngravingSquares.Click += new System.EventHandler(this.Btn_GenerateEngravingSquares_Click);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(98, 132);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(20, 13);
+            this.label29.TabIndex = 47;
+            this.label29.Text = "To";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(-2, 131);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(30, 13);
+            this.label30.TabIndex = 45;
+            this.label30.Text = "From";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(-2, 108);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(53, 13);
+            this.label31.TabIndex = 44;
+            this.label31.Text = "Speed (F)";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(188, 133);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(34, 13);
+            this.label32.TabIndex = 43;
+            this.label32.Text = "Steps";
+            // 
+            // numericUpDown_EngraveSpeedSteps
+            // 
+            this.numericUpDown_EngraveSpeedSteps.Location = new System.Drawing.Point(229, 130);
+            this.numericUpDown_EngraveSpeedSteps.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveSpeedSteps.Name = "numericUpDown_EngraveSpeedSteps";
+            this.numericUpDown_EngraveSpeedSteps.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown_EngraveSpeedSteps.TabIndex = 42;
+            this.numericUpDown_EngraveSpeedSteps.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(98, 83);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(20, 13);
+            this.label33.TabIndex = 40;
+            this.label33.Text = "To";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(-2, 82);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(30, 13);
+            this.label34.TabIndex = 38;
+            this.label34.Text = "From";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(-2, 59);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(53, 13);
+            this.label35.TabIndex = 37;
+            this.label35.Text = "Power (S)";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(188, 84);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(34, 13);
+            this.label36.TabIndex = 36;
+            this.label36.Text = "Steps";
+            // 
+            // numericUpDown_EngravePowerSteps
+            // 
+            this.numericUpDown_EngravePowerSteps.Location = new System.Drawing.Point(229, 81);
+            this.numericUpDown_EngravePowerSteps.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngravePowerSteps.Name = "numericUpDown_EngravePowerSteps";
+            this.numericUpDown_EngravePowerSteps.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown_EngravePowerSteps.TabIndex = 35;
+            this.numericUpDown_EngravePowerSteps.Value = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(3, 3);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(297, 52);
+            this.label37.TabIndex = 33;
+            this.label37.Text = "Generate a series of box outlines, in a range of power/speeds\r\nUseful for:\r\n- Che" +
+    "cking scaling in y/x axes\r\n- Determining optimum speed/power for cutting\r\n";
+            // 
+            // numericUpDown_EngraveLineInterval
+            // 
+            this.numericUpDown_EngraveLineInterval.DecimalPlaces = 1;
+            this.numericUpDown_EngraveLineInterval.Location = new System.Drawing.Point(446, 84);
+            this.numericUpDown_EngraveLineInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveLineInterval.Name = "numericUpDown_EngraveLineInterval";
+            this.numericUpDown_EngraveLineInterval.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDown_EngraveLineInterval.TabIndex = 68;
+            this.numericUpDown_EngraveLineInterval.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown_EngraveLineInterval.ValueChanged += new System.EventHandler(this.numericUpDown_EngraveLineInterval_ValueChanged);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(493, 86);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(49, 13);
+            this.label38.TabIndex = 67;
+            this.label38.Text = "lines/mm";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(493, 109);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(85, 13);
+            this.label39.TabIndex = 69;
+            this.label39.Text = "line interval (mm)";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(493, 131);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(25, 13);
+            this.label40.TabIndex = 70;
+            this.label40.Text = "DPI";
+            // 
+            // label_EngraveLineInterval
+            // 
+            this.label_EngraveLineInterval.AutoSize = true;
+            this.label_EngraveLineInterval.Location = new System.Drawing.Point(443, 109);
+            this.label_EngraveLineInterval.Name = "label_EngraveLineInterval";
+            this.label_EngraveLineInterval.Size = new System.Drawing.Size(10, 13);
+            this.label_EngraveLineInterval.TabIndex = 71;
+            this.label_EngraveLineInterval.Text = "-";
+            // 
+            // label_EngraveDPI
+            // 
+            this.label_EngraveDPI.AutoSize = true;
+            this.label_EngraveDPI.Location = new System.Drawing.Point(443, 131);
+            this.label_EngraveDPI.Name = "label_EngraveDPI";
+            this.label_EngraveDPI.Size = new System.Drawing.Size(10, 13);
+            this.label_EngraveDPI.TabIndex = 72;
+            this.label_EngraveDPI.Text = "-";
             // 
             // GenerateForm
             // 
@@ -970,6 +1408,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown__NumLines)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpeedMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpeedMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresPowerMax)).EndInit();
@@ -986,9 +1427,18 @@
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareSpacing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedSteps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerSteps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveLineInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1059,5 +1509,34 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_SquaresHeight;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSquareWidth;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSquareSpacing;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSquareHeight;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSpeedMax;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSpeedMin;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngravePowerMax;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngravePowerMin;
+        private System.Windows.Forms.Button Btn_GenerateEngravingSquares;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveSpeedSteps;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngravePowerSteps;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.NumericUpDown numericUpDown_EngraveLineInterval;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label_EngraveDPI;
+        private System.Windows.Forms.Label label_EngraveLineInterval;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
     }
 }
