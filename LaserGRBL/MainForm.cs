@@ -33,10 +33,10 @@ namespace LaserGRBL
 			MnOrtur.Visible = false;
 			MMn.Renderer = new MMnRenderer();
 
-            
+
 			splitContainer1.FixedPanel = FixedPanel.Panel1;
-            splitContainer1.SplitterDistance = Settings.GetObject("MainForm Splitter Position", 260);
-            
+			splitContainer1.SplitterDistance = Settings.GetObject("MainForm Splitter Position", 260);
+
 			MnNotifyNewVersion.Checked = Settings.GetObject("Auto Update", true);
 			MnNotifyMinorVersion.Checked = Settings.GetObject("Auto Update Build", false);
 			MnNotifyPreRelease.Checked = Settings.GetObject("Auto Update Pre", false);
@@ -136,8 +136,8 @@ namespace LaserGRBL
 				else if (available != null)
 					NewVersionForm.CreateAndShowDialog(current, available, this);
 				else
-					MessageBox.Show(this, "You have the most updated version!", "Software info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1); 
-			
+					MessageBox.Show(this, "You have the most updated version!", "Software info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
 			}
 		}
 
@@ -204,7 +204,7 @@ namespace LaserGRBL
 					this.TTLinkToNews.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
 				}
 			}
-			catch (Exception ex){ System.Diagnostics.Debug.WriteLine(ex); }
+			catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex); }
 		}
 
 		void OnFileLoaded(long elapsed, string filename)
@@ -251,9 +251,9 @@ namespace LaserGRBL
 				SincroStart.StopListen();
 				Core.CloseCom(true);
 				Settings.SetObject("Mainform Size and Position", new object[] { Size, Location, WindowState });
-                Settings.Exiting();
+				Settings.Exiting();
 
-                UsageStats.SaveFile(Core);
+				UsageStats.SaveFile(Core);
 			}
 		}
 
@@ -278,7 +278,7 @@ namespace LaserGRBL
 					if (F.ShowDialog(this) == DialogResult.OK)
 						ShowWiFiConfig();
 				}
-				
+
 			}
 		}
 
@@ -292,7 +292,7 @@ namespace LaserGRBL
 					Settings.SetObject("ComWrapper Protocol", ComWrapper.WrapperType.Telnet);
 					Core.CloseCom(true);
 				}
-				
+
 			}
 		}
 
@@ -354,8 +354,8 @@ namespace LaserGRBL
 				case GrblCore.MacStatus.Door:
 				case GrblCore.MacStatus.Hold:
 				case GrblCore.MacStatus.Cooling:
-                case GrblCore.MacStatus.AutoHold:
-                    TTTStatus.BackColor = Color.DarkOrange;
+				case GrblCore.MacStatus.AutoHold:
+					TTTStatus.BackColor = Color.DarkOrange;
 					TTTStatus.ForeColor = Color.Black;
 					break;
 				case GrblCore.MacStatus.Jog:
@@ -381,7 +381,7 @@ namespace LaserGRBL
 				PbBuffer.ProgressBar.SetState(stuck ? 2 : 1);
 				BtnUnlockFromStuck.Enabled = stuck;
 			}
-			
+
 			MnOrtur.Visible = Core.IsOrturBoard;
 
 			ResumeLayout();
@@ -544,7 +544,7 @@ namespace LaserGRBL
 
 		private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
 		{
-            Settings.SetObject("MainForm Splitter Position", splitContainer1.SplitterDistance);
+			Settings.SetObject("MainForm Splitter Position", splitContainer1.SplitterDistance);
 		}
 
 		private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -956,10 +956,10 @@ namespace LaserGRBL
 			Tools.Utils.OpenLink(@"https://www.facebook.com/groups/486886768471991");
 		}
 
-        private void greekToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetLanguage(new System.Globalization.CultureInfo("el-GR"));
-        }
+		private void greekToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SetLanguage(new System.Globalization.CultureInfo("el-GR"));
+		}
 
 		private void turkishToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -993,10 +993,16 @@ namespace LaserGRBL
 		{
 			ShowWiFiConfig();
 		}
+
+		private void generateToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			GenerateForm.CreateAndShowDialog(this, Core);
+
+		}
 	}
 
 
-	public class MMnRenderer : ToolStripProfessionalRenderer
+		public class MMnRenderer : ToolStripProfessionalRenderer
 	{
 		public MMnRenderer() : base(new CustomMenuColor()) { }
 
