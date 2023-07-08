@@ -156,7 +156,7 @@ This could generate a soft-limit error. Are you sure of the entered values?</val
     <value>Smooth (HQ Bicubic)</value>
   </data>
   <data name="BoxReadConfigSuccess" xml:space="preserve">
-    <value>{0} Config readed successfully!</value>
+    <value>{0} Config read successfully!</value>
   </data>
   <data name="FormulaOpticalCorrect" xml:space="preserve">
     <value>OpticalCorrect</value>
@@ -403,5 +403,37 @@ Only engravers with grbl version &gt;= 1.1 with "laser mode" enabled ($32=1) can
   </data>
   <data name="Line2LineOptions" xml:space="preserve">
     <value>Line To Line Options</value>
+  </data>
+  <data name="WarnUnlockProportionText" xml:space="preserve">
+    <value>Freely assigning the width and height of the work can lead to distortion of the image. Do you want to continue?</value>
+  </data>
+  <data name="WarnUnlockProportionTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="BoxTelegramSettingText" xml:space="preserve">
+    <value>Test notification has been sent, please check your phone!</value>
+  </data>
+  <data name="BoxTelegramSettingTitle" xml:space="preserve">
+    <value>Telegram notification</value>
+  </data>
+  <data name="WarnBufferStuckUnlockText" xml:space="preserve">
+    <value>If the buffer is blocked, it is because there was some communication problem with your engraver. If you press "OK" LaserGRBL will ignore the full buffer and send the next commands. If this happens often, you should try to understand the causes of this problem.
+Click "?" for more information.</value>
+  </data>
+  <data name="WarnBufferStuckUnlockTitle" xml:space="preserve">
+    <value>Unlock buffer</value>
+  </data>
+  <data name="ProblemConnectingText" xml:space="preserve">
+    <value>Error connecting your engraver.
+If you need help click on "?" button.</value>
+  </data>
+  <data name="ProblemConnectingTitle" xml:space="preserve">
+    <value>Problem with connection?</value>
+  </data>
+  <data name="BoxMachineSizeOutOfRangeText" xml:space="preserve">
+    <value>The engraver has some configuration parameters out of range. Please check machine configuration (menu "Grbl", "Grbl Configuration") parameters 130 and 131.</value>
+  </data>
+  <data name="BoxMachineSizeOutOfRangeTitle" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

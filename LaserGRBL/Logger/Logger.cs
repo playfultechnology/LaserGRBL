@@ -27,11 +27,10 @@ namespace LaserGRBL
 
 		internal static void Start()
 		{
-			Version current = typeof(GitHub).Assembly.GetName().Version;
             bool p64 = Tools.OSHelper.Is64BitProcess;
             bool o64 = Tools.OSHelper.Is64BitOperatingSystem;
 
-            LogMultiLine("Program", String.Format("------- LaserGRBL v{0} [{1}{2}] START -------", current.ToString(3), p64 ? "64bit" : "32bit" , p64 != o64 ? "!" : ""));
+            LogMultiLine("Program", String.Format("------- LaserGRBL v{0} [{1}{2}] START -------", Program.CurrentVersion.ToString(3), p64 ? "64bit" : "32bit" , p64 != o64 ? "!" : ""));
         }
 		
 		internal static void Stop()
@@ -53,7 +52,7 @@ namespace LaserGRBL
 
 				StringBuilder sb = new StringBuilder();
 				foreach (string line in text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
-					sb.AppendFormat("{0:dd/MM/yyyy hh:mm:ss.fff}\t{1}\t{2}\r\n", dt, context.PadRight(12, ' '), line);//sb.AppendFormat("{0}.{1}\t{2}\t{3}\t{4}\r\n", dt, dt.Millisecond, pid, context.PadRight(12, ' '), line);
+					sb.AppendFormat("{0:dd/MM/yyyy HH:mm:ss.fff}\t{1}\t{2}\r\n", dt, context.PadRight(12, ' '), line);//sb.AppendFormat("{0}.{1}\t{2}\t{3}\t{4}\r\n", dt, dt.Millisecond, pid, context.PadRight(12, ' '), line);
 
 				Log(sb.ToString());
 			}

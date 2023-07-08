@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LaserGRBL"
-#define MyAppVersion "4.3.0"
+#define MyAppVersion "4.9.4"
 #define MyAppVersionName "Rhydon"
 #define MyAppPublisher "LaserGRBL"
 #define MyAppURL "https://lasergrbl.com"
@@ -61,10 +61,12 @@ Source: ".\LaserGRBL\bin\Release\pl-PL\LaserGRBL.resources.dll"; DestDir: "{app}
 Source: ".\LaserGRBL\bin\Release\zh-TW\LaserGRBL.resources.dll"; DestDir: "{app}\zh-TW"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\el-GR\LaserGRBL.resources.dll"; DestDir: "{app}\el-GR"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\tr-TR\LaserGRBL.resources.dll"; DestDir: "{app}\tr-TR"; Flags: ignoreversion
+Source: ".\LaserGRBL\bin\Release\ro-RO\LaserGRBL.resources.dll"; DestDir: "{app}\ro-RO"; Flags: ignoreversion
+Source: ".\LaserGRBL\bin\Release\nl-NL\LaserGRBL.resources.dll"; DestDir: "{app}\nl-NL"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\Driver\*"; DestDir: "{app}\Driver"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\Firmware\*"; DestDir: "{app}\Firmware"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\LaserGRBL.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\LaserGRBL\bin\Release\StandardMaterials.psh"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\LaserGRBL\bin\Release\StandardMaterials.psh"; DestDir: "{userappdata}\LaserGRBL\"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\StandardButtons.zbn"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\LaserGRBL\bin\Release\Sound\*"; DestDir: "{app}\Sound"; Flags: ignoreversion
 Source: ".\lasergrblfile.ico"; DestDir: "{app}"; Flags: ignoreversion
@@ -90,3 +92,8 @@ Root: HKCR; SubKey: ".zbn"; ValueType: string; ValueData: "LaserGRBL zipped butt
 Root: HKCR; SubKey: "LaserGRBL zipped button"; ValueType: string; ValueData: "This file contains LaserGRBL custom buttons"; Flags: uninsdeletekey
 Root: HKCR; SubKey: "LaserGRBL zipped button\Shell\Open\Command"; ValueType: string; ValueData: """{app}\LaserGRBL.exe"" ""%1"""; Flags: uninsdeletekey
 Root: HKCR; Subkey: "LaserGRBL zipped button\DefaultIcon"; ValueType: string; ValueData: "{app}\zippedbutton.ico,0"; Flags: uninsdeletevalue
+
+Root: HKCR; SubKey: ".lps"; ValueType: string; ValueData: "LaserGRBL Project file"; Flags: uninsdeletekey
+Root: HKCR; SubKey: "LaserGRBL Project file"; ValueType: string; ValueData: "Project file for laser engraving"; Flags: uninsdeletekey
+Root: HKCR; SubKey: "LaserGRBL Project file\Shell\Open\Command"; ValueType: string; ValueData: """{app}\LaserGRBL.exe"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: "LaserGRBL Project file\DefaultIcon"; ValueType: string; ValueData: "{app}\lasergrblfile.ico,0"; Flags: uninsdeletevalue

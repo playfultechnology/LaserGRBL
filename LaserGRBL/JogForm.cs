@@ -69,7 +69,6 @@ namespace LaserGRBL
 			LblSpeed.Text = String.Format("F{0}", TbSpeed.Value);
 			Settings.SetObject("Jog Speed", TbSpeed.Value);
 			Core.JogSpeed = TbSpeed.Value;
-			needsave = true;
 		}
 
 		private void TbStep_ValueChanged(object sender, EventArgs e)
@@ -78,7 +77,6 @@ namespace LaserGRBL
 			LblStep.Text = TbStep.Value.ToString();
 			Settings.SetObject("Jog Step", TbStep.Value);
 			Core.JogStep = TbStep.Value;
-			needsave = true;
 		}
 
         public void ChangeJogStepIndexBy(int value)
@@ -91,20 +89,10 @@ namespace LaserGRBL
 			TbSpeed.Value = Math.Max(Math.Min(TbSpeed.Value + (TbSpeed.LargeChange * v), TbSpeed.Maximum), TbSpeed.Minimum);
 		}
 
-		bool needsave = false;
-		private void OnSliderMouseUP(object sender, MouseEventArgs e)
-		{
-			if (needsave)
-			{
-				needsave = false;
-				Settings.Save();
-			}
-		}
-
 		int oldMax;
 		private void UpdateFMax_Tick(object sender, EventArgs e)
 		{
-			int curMax = (int)Math.Max(TbSpeed.Minimum, Math.Max(Core.Configuration.MaxRateX, Core.Configuration.MaxRateY));
+			int curMax = (int)Math.Max(TbSpeed.Minimum, Math.Max(GrblCore.Configuration.MaxRateX, GrblCore.Configuration.MaxRateY));
 
 			if (oldMax != curMax)
 			{

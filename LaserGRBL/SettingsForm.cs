@@ -29,7 +29,7 @@ namespace LaserGRBL
 
             BackColor = ColorScheme.FormBackColor;
             ForeColor = ColorScheme.FormForeColor;
-            TpRasterImport.BackColor = TpHardware.BackColor = TpJogControl.BackColor = TpAutoCooling.BackColor  = TpGCodeSettings.BackColor = BtnCancel.BackColor = BtnSave.BackColor = TpSoundSettings.BackColor = changeConBtn.BackColor = changeDconBtn.BackColor = changeFatBtn.BackColor = changeSucBtn.BackColor = changeWarBtn.BackColor = ColorScheme.FormBackColor;
+            TpVectorImport.BackColor = TpRasterImport.BackColor = TpHardware.BackColor = TpJogControl.BackColor = TpAutoCooling.BackColor  = TpGCodeSettings.BackColor = BtnCancel.BackColor = BtnSave.BackColor = TpSoundSettings.BackColor = changeConBtn.BackColor = changeDconBtn.BackColor = changeFatBtn.BackColor = changeSucBtn.BackColor = changeWarBtn.BackColor = ColorScheme.FormBackColor;
 
             InitCoreCB();
 			InitProtocolCB();
@@ -46,6 +46,7 @@ namespace LaserGRBL
 			CbIssueDetector.Checked = !Settings.GetObject("Do not show Issue Detector", false);
 			CbSoftReset.Checked = Settings.GetObject("Reset Grbl On Connect", true);
 			CbHardReset.Checked = Settings.GetObject("HardReset Grbl On Connect", false);
+			CbQueryDI.Checked = Settings.GetObject("Query MachineInfo ($I) at connect", true);
 			CbDisableBoundWarn.Checked = Settings.GetObject("DisableBoundaryWarning", false);
 			CbClickNJog.Checked = Settings.GetObject("Click N Jog", true);
 
@@ -70,7 +71,11 @@ namespace LaserGRBL
             CbPlayConnect.Checked = Settings.GetObject($"Sound.{SoundEvent.EventId.Connect}.Enabled", true);
             CbPlayDisconnect.Checked = Settings.GetObject($"Sound.{SoundEvent.EventId.Disconnect}.Enabled", true);
 
-            successSoundLabel.Text = System.IO.Path.GetFileName(Settings.GetObject($"Sound.{SoundEvent.EventId.Success}", $"Sound\\{SoundEvent.EventId.Success}.wav"));
+			CbTelegramNotification.Checked = Settings.GetObject("TelegramNotification.Enabled", false);
+			TxtNotification.Text = Tools.Protector.Decrypt(Settings.GetObject("TelegramNotification.Code", ""));
+			UdTelegramNotificationThreshold.Value = (decimal)Settings.GetObject("TelegramNotification.Threshold", 1);
+
+			successSoundLabel.Text = System.IO.Path.GetFileName(Settings.GetObject($"Sound.{SoundEvent.EventId.Success}", $"Sound\\{SoundEvent.EventId.Success}.wav"));
             SuccesFullLabel.Text = Settings.GetObject($"Sound.{SoundEvent.EventId.Success}", $"Sound\\{SoundEvent.EventId.Success}.wav");
             warningSoundLabel.Text = System.IO.Path.GetFileName(Settings.GetObject($"Sound.{SoundEvent.EventId.Warning}", $"Sound\\{SoundEvent.EventId.Warning}.wav"));
             WarningFullLabel.Text = Settings.GetObject($"Sound.{SoundEvent.EventId.Warning}", $"Sound\\{SoundEvent.EventId.Warning}.wav");
@@ -81,7 +86,9 @@ namespace LaserGRBL
             disconnectSoundLabel.Text = System.IO.Path.GetFileName(Settings.GetObject($"Sound.{SoundEvent.EventId.Disconnect}", $"Sound\\{SoundEvent.EventId.Disconnect}.wav"));
             DisconnectFullLabel.Text = Settings.GetObject($"Sound.{SoundEvent.EventId.Disconnect}", $"Sound\\{SoundEvent.EventId.Disconnect}.wav");
 
-            groupBox1.ForeColor = groupBox2.ForeColor = groupBox3.ForeColor = ColorScheme.FormForeColor;
+			CbSmartBezier.Checked = Settings.GetObject($"Vector.UseSmartBezier", true);
+
+			groupBox1.ForeColor = groupBox2.ForeColor = groupBox3.ForeColor = ColorScheme.FormForeColor;
 
             SuccesFullLabel.Visible = WarningFullLabel.Visible = ErrorFullLabel.Visible = ConnectFullLabel.Visible = DisconnectFullLabel.Visible = false;
 
@@ -177,7 +184,8 @@ namespace LaserGRBL
 			Settings.SetObject("Do not show Issue Detector", !CbIssueDetector.Checked);
 			Settings.SetObject("Reset Grbl On Connect", CbSoftReset.Checked);
 			Settings.SetObject("HardReset Grbl On Connect", CbHardReset.Checked);
-            Settings.SetObject("Enable Continuous Jog", CbContinuosJog.Checked);
+			Settings.SetObject("Query MachineInfo ($I) at connect", CbQueryDI.Checked);
+			Settings.SetObject("Enable Continuous Jog", CbContinuosJog.Checked);
             Settings.SetObject("Enale Z Jog Control", CbEnableZJog.Checked);
 			Settings.SetObject("DisableBoundaryWarning", CbDisableBoundWarn.Checked);
 			Settings.SetObject("Click N Jog", CbClickNJog.Checked);
@@ -202,11 +210,15 @@ namespace LaserGRBL
             Settings.SetObject($"Sound.{SoundEvent.EventId.Connect}.Enabled", CbPlayConnect.Checked);
             Settings.SetObject($"Sound.{SoundEvent.EventId.Disconnect}.Enabled", CbPlayDisconnect.Checked);
 
+			Settings.SetObject("TelegramNotification.Enabled", CbTelegramNotification.Checked);
+			Settings.SetObject("TelegramNotification.Threshold", (int)UdTelegramNotificationThreshold.Value);
+			Settings.SetObject("TelegramNotification.Code", Tools.Protector.Encrypt(TxtNotification.Text));
+
             Settings.SetObject("Raster Hi-Res", CbHiRes.Checked);
 
-			Settings.Save();
+			Settings.SetObject($"Vector.UseSmartBezier", CbSmartBezier.Checked);
 
-            SettingsChanged?.Invoke(this, null);
+			SettingsChanged?.Invoke(this, null);
 
             Close();
 
@@ -284,5 +296,29 @@ namespace LaserGRBL
                 DisconnectFullLabel.Text = SoundBrowserDialog.FileName;
             }
         }
-    }
+
+		private void TbNotification_TextChanged(object sender, EventArgs e)
+		{
+			EnableTest();
+		}
+
+		private void EnableTest()
+		{
+			BtnTestNotification.Enabled = TxtNotification.Text.Trim().Length == 10 && CbTelegramNotification.Checked;
+		}
+
+		private void BtnTestNotification_Click(object sender, EventArgs e)
+		{
+			Telegram.NotifyEvent(TxtNotification.Text, "If you receive this message, all is fine!");
+			MessageBox.Show(Strings.BoxTelegramSettingText, Strings.BoxTelegramSettingTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void BtnTelegNoteInfo_Click(object sender, EventArgs e)
+		{ Tools.Utils.OpenLink(@"https://lasergrbl.com/telegram/"); }
+
+		private void CbTelegramNotification_CheckedChanged(object sender, EventArgs e)
+		{
+			EnableTest();
+		}
+	}
 }
