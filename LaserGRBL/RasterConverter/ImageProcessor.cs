@@ -353,6 +353,22 @@ namespace LaserGRBL.RasterConverter
 			Refresh();
 		}
 
+		internal void Fill(Point location, Size rsize, Color color, int v)
+		{
+			Point scaled = new Point(location.X * mOriginal.Width / rsize.Width, location.Y * mOriginal.Height / rsize.Height);
+			mOriginal = ImageTransform.Fill(mOriginal, scaled, color, v);
+			ResizeRecalc();
+			Refresh();
+		}
+
+		internal void Outliner(Point location, Size rsize)
+		{
+			Point scaled = new Point(location.X * mOriginal.Width / rsize.Width, location.Y * mOriginal.Height / rsize.Height);
+			mOriginal = ImageTransform.Outliner(mOriginal, scaled);
+			ResizeRecalc();
+			Refresh();
+		}
+
 		public void Invert()
 		{
 			mOriginal = ImageTransform.InvertingImage(mOriginal);
@@ -1052,11 +1068,11 @@ namespace LaserGRBL.RasterConverter
 						conf.firmwareType = Settings.GetObject("Firmware Type", Firmware.Grbl);
 
 						if (SelectedTool == Tool.Line2Line || SelectedTool == Tool.Dithering || SelectedTool == Tool.NoProcessing)
-							mCore.LoadedFile.LoadImageL2L(bmp, mFileName, conf, mAppend);
+							mCore.LoadedFile.LoadImageL2L(bmp, mFileName, conf, mAppend, mCore);
 						else if (SelectedTool == Tool.Vectorize)
 							mCore.LoadedFile.LoadImagePotrace(bmp, mFileName, UseSpotRemoval, (int)SpotRemoval, UseSmoothing, Smoothing, UseOptimize, Optimize, OptimizeFast, conf, mAppend, mCore);
 						else if (SelectedTool == Tool.Centerline)
-							mCore.LoadedFile.LoadImageCenterline(bmp, mFileName, UseCornerThreshold, CornerThreshold, UseLineThreshold, LineThreshold, conf, mAppend);
+							mCore.LoadedFile.LoadImageCenterline(bmp, mFileName, UseCornerThreshold, CornerThreshold, UseLineThreshold, LineThreshold, conf, mAppend, mCore);
 					}
 
 					if (GenerationComplete != null)
@@ -1109,7 +1125,7 @@ namespace LaserGRBL.RasterConverter
 			}
 		}
 
-		private Bitmap ProduceWhitepointDemo(Image img, Size size)
+        private Bitmap ProduceWhitepointDemo(Image img, Size size)
 		{
 			using (Bitmap resized = ImageTransform.ResizeImage(mResized, mResized.Size, false, Interpolation))
 			using (Bitmap grayscale = ImageTransform.GrayScale(resized, Red / 100.0F, Green / 100.0F, Blue / 100.0F, -((100 - Brightness) / 100.0F), (Contrast / 100.0F), IsGrayScale ? ImageTransform.Formula.SimpleAverage : Formula))

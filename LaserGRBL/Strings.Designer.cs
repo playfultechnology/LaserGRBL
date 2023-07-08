@@ -288,6 +288,24 @@ namespace LaserGRBL {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a The engraver has some configuration parameters out of range. Please check machine configuration (menu &quot;Grbl&quot;, &quot;Grbl Configuration&quot;) parameters 130 and 131..
+        /// </summary>
+        internal static string BoxMachineSizeOutOfRangeText {
+            get {
+                return ResourceManager.GetString("BoxMachineSizeOutOfRangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Warning.
+        /// </summary>
+        internal static string BoxMachineSizeOutOfRangeTitle {
+            get {
+                return ResourceManager.GetString("BoxMachineSizeOutOfRangeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Error reading config!.
         /// </summary>
         internal static string BoxReadConfigError {
@@ -306,11 +324,29 @@ namespace LaserGRBL {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a {0} Config readed successfully!.
+        ///   Cerca una stringa localizzata simile a {0} Config read successfully!.
         /// </summary>
         internal static string BoxReadConfigSuccess {
             get {
                 return ResourceManager.GetString("BoxReadConfigSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Test notification has been sent, please check your phone!.
+        /// </summary>
+        internal static string BoxTelegramSettingText {
+            get {
+                return ResourceManager.GetString("BoxTelegramSettingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Telegram notification.
+        /// </summary>
+        internal static string BoxTelegramSettingTitle {
+            get {
+                return ResourceManager.GetString("BoxTelegramSettingTitle", resourceCulture);
             }
         }
         
@@ -774,6 +810,25 @@ namespace LaserGRBL {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Error connecting your engraver.
+        ///If you need help click on &quot;?&quot; button..
+        /// </summary>
+        internal static string ProblemConnectingText {
+            get {
+                return ResourceManager.GetString("ProblemConnectingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Problem with connection?.
+        /// </summary>
+        internal static string ProblemConnectingTitle {
+            get {
+                return ResourceManager.GetString("ProblemConnectingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a It seems that the current position is no longer known by Grbl.
         ///Without the Homing Procedure ($H) the result may not be reliable.
         ///Continue anyway?.
@@ -817,6 +872,25 @@ namespace LaserGRBL {
         internal static string UnsupportedFiletype {
             get {
                 return ResourceManager.GetString("UnsupportedFiletype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a If the buffer is blocked, it is because there was some communication problem with your engraver. If you press &quot;OK&quot; LaserGRBL will ignore the full buffer and send the next commands. If this happens often, you should try to understand the causes of this problem.
+        ///Click &quot;?&quot; for more information..
+        /// </summary>
+        internal static string WarnBufferStuckUnlockText {
+            get {
+                return ResourceManager.GetString("WarnBufferStuckUnlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Unlock buffer.
+        /// </summary>
+        internal static string WarnBufferStuckUnlockTitle {
+            get {
+                return ResourceManager.GetString("WarnBufferStuckUnlockTitle", resourceCulture);
             }
         }
         
@@ -877,6 +951,24 @@ namespace LaserGRBL {
         internal static string WarnSoftLimitTitle {
             get {
                 return ResourceManager.GetString("WarnSoftLimitTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Freely assigning the width and height of the work can lead to distortion of the image. Do you want to continue?.
+        /// </summary>
+        internal static string WarnUnlockProportionText {
+            get {
+                return ResourceManager.GetString("WarnUnlockProportionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Warning.
+        /// </summary>
+        internal static string WarnUnlockProportionTitle {
+            get {
+                return ResourceManager.GetString("WarnUnlockProportionTitle", resourceCulture);
             }
         }
         

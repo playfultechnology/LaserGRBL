@@ -55,8 +55,10 @@ namespace LaserGRBL
             if (InProgram && var == MacStatus.Idle) //bugfix for grbl sending Idle on G4
                 var = MacStatus.Run;
 
-            if (var == MacStatus.Hold && !mHoldByUserRequest)
+            if (var == MacStatus.Hold && mHoldByCoolingRequest)
                 var = MacStatus.Cooling;
+            else if (var == MacStatus.Hold && !mHoldByUserRequest)
+                var = MacStatus.AutoHold;
 
             SetStatus(var);
         }
@@ -65,8 +67,12 @@ namespace LaserGRBL
         {
 
         }
+		public override void RefreshMachineInfo()
+		{
+			
+		}
 
-        protected override void DetectHang()
+		protected override void DetectHang()
         {
             if (mTP.LastIssue == DetectedIssue.Unknown && MachineStatus == MacStatus.Run && InProgram)
             {

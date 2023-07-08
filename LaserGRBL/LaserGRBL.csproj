@@ -87,6 +87,7 @@
     <StartupObject>LaserGRBL.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -97,6 +98,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
@@ -129,15 +131,13 @@
     <Compile Include="ComWrapper\MySerial\StopBits.cs" />
     <Compile Include="ComWrapper\MySerial\WinSerialStream.cs" />
     <Compile Include="ComWrapper\UsbSerial2.cs" />
+    <Compile Include="Tools\Project.cs" />
     <Compile Include="Core\VigoCore.cs" />
     <Compile Include="CsPotrace\PotraceClipper.cs" />
-    <Compile Include="GenerateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerateForm.Designer.cs">
-      <DependentUpon>GenerateForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Logger\AsyncLogFile.cs" />
+    <Compile Include="SvgConverter\BezierTools.cs" />
+    <Compile Include="Telegram.cs" />
+    <Compile Include="Tools\DataProtector.cs" />
     <Compile Include="Tools\Json.cs" />
     <Compile Include="Logger\ComLogger.cs" />
     <Compile Include="ExceptionManager.cs">
@@ -769,6 +769,18 @@
     <Compile Include="UserControls\WaitingProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="WiFiConfigurator\OrturWiFiConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WiFiConfigurator\OrturWiFiConfig.Designer.cs">
+      <DependentUpon>OrturWiFiConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WiFiConfigurator\OrturWiFiConfigPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WiFiConfigurator\OrturWiFiConfigPrompt.Designer.cs">
+      <DependentUpon>OrturWiFiConfigPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="WiFiDiscovery\DiscoveryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -776,13 +788,148 @@
       <DependentUpon>DiscoveryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WiFiDiscovery\IPAddressHelper.cs" />
-    <EmbeddedResource Include="GenerateForm.resx">
-      <DependentUpon>GenerateForm.cs</DependentUpon>
+    <EmbeddedResource Include="AutoUpdate\NewVersionForm.nl-NL.resx">
+      <DependentUpon>NewVersionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdate\NewVersionForm.ro-RO.resx">
+      <DependentUpon>NewVersionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectLogForm.nl-NL.resx">
+      <DependentUpon>ConnectLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectLogForm.ro-RO.resx">
+      <DependentUpon>ConnectLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomButtonForm.nl-NL.resx">
+      <DependentUpon>CustomButtonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomButtonForm.ro-RO.resx">
+      <DependentUpon>CustomButtonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionManager.nl-NL.resx">
+      <DependentUpon>ExceptionManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionManager.ro-RO.resx">
+      <DependentUpon>ExceptionManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrblConfig.nl-NL.resx">
+      <DependentUpon>GrblConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrblConfig.ro-RO.resx">
+      <DependentUpon>GrblConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotkeyManagerForm.nl-NL.resx">
+      <DependentUpon>HotkeyManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotkeyManagerForm.ro-RO.resx">
+      <DependentUpon>HotkeyManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueDetectorForm.nl-NL.resx">
+      <DependentUpon>IssueDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueDetectorForm.ro-RO.resx">
+      <DependentUpon>IssueDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseForm.ro-RO.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.nl-NL.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ro-RO.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewForm.nl-NL.resx">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewForm.ro-RO.resx">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PSHelper\PSEditorForm.nl-NL.resx">
+      <DependentUpon>PSEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PSHelper\PSEditorForm.ro-RO.resx">
+      <DependentUpon>PSEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PSHelper\PSHelperForm.nl-NL.resx">
+      <DependentUpon>PSHelperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PSHelper\PSHelperForm.ro-RO.resx">
+      <DependentUpon>PSHelperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\ConvertSizeAndOptionForm.nl-NL.resx">
+      <DependentUpon>ConvertSizeAndOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\ConvertSizeAndOptionForm.ro-RO.resx">
+      <DependentUpon>ConvertSizeAndOptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\RasterToLaserForm.nl-NL.resx">
+      <DependentUpon>RasterToLaserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\RasterToLaserForm.ro-RO.resx">
+      <DependentUpon>RasterToLaserForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\ResolutionHelperForm.nl-NL.resx">
+      <DependentUpon>ResolutionHelperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasterConverter\ResolutionHelperForm.ro-RO.resx">
+      <DependentUpon>ResolutionHelperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResumeJobForm.nl-NL.resx">
+      <DependentUpon>ResumeJobForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResumeJobForm.ro-RO.resx">
+      <DependentUpon>ResumeJobForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RunFromPositionForm.nl-NL.resx">
+      <DependentUpon>RunFromPositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RunFromPositionForm.ro-RO.resx">
+      <DependentUpon>RunFromPositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveOptionForm.nl-NL.resx">
+      <DependentUpon>SaveOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveOptionForm.ro-RO.resx">
+      <DependentUpon>SaveOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.nl-NL.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.ro-RO.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SvgConverter\ConvertSizeAndOptionForm.nl-NL.resx">
+      <DependentUpon>ConvertSizeAndOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SvgConverter\ConvertSizeAndOptionForm.ro-RO.resx">
+      <DependentUpon>ConvertSizeAndOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WiFiConfigurator\OrturWiFiConfig.resx">
+      <DependentUpon>OrturWiFiConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WiFiConfigurator\OrturWiFiConfigPrompt.resx">
+      <DependentUpon>OrturWiFiConfigPrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WiFiDiscovery\DiscoveryForm.nl-NL.resx">
+      <DependentUpon>DiscoveryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WiFiDiscovery\DiscoveryForm.resx">
       <DependentUpon>DiscoveryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CSV\setting_codes.ortur.v1.5.x.csv" />
+    <EmbeddedResource Include="WiFiDiscovery\DiscoveryForm.ro-RO.resx">
+      <DependentUpon>DiscoveryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSV\setting_codes.ortur.v1.7.x.csv" />
+    <EmbeddedResource Include="CSV\setting_codes.ortur.GrblHal.csv" />
+    <EmbeddedResource Include="CSV\alarm_codes.ortur.GrblHal.csv" />
+    <EmbeddedResource Include="CSV\error_codes.ortur.GrblHal.csv" />
     <None Include="Resources\flag_greece.png" />
+    <Content Include="Grafica\777494-200.png" />
+    <Content Include="Grafica\info.png" />
     <Content Include="Sound\connect.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -809,7 +956,7 @@
     <EmbeddedResource Include="ConnectLogForm.tr-TR.resx">
       <DependentUpon>ConnectLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CSV\setting_codes.ortur.v1.0.csv" />
+    <EmbeddedResource Include="CSV\setting_codes.ortur.v1.4.x.csv" />
     <None Include="StandardButtons.zbn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1427,6 +1574,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.cs-CZ.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.el-GR.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -1436,18 +1584,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.es.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.hu-HU.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.pl-PL.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.sk-SK.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.tr-TR.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.zh-TW.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -1488,6 +1641,9 @@
     <EmbeddedResource Include="Strings.pt-BR.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.ro-RO.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings.ru.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
@@ -1501,6 +1657,9 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.zh-TW.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.nl-NL.resx">
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RasterConverter\ConvertSizeAndOptionForm.da.resx">
@@ -1597,9 +1756,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.fr.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.it.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.pt-BR.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -1610,6 +1771,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.ru.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.zh-CN.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>

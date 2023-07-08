@@ -52,8 +52,8 @@ namespace LaserGRBL.PSHelper
 
 			protected override void OnColumnChanging(DataColumnChangeEventArgs e)
 			{
-				if (e.Column == PowerColumn && (int)e.ProposedValue < 5)
-					throw new Exception("Please enter a valid power level (Min 5%)");
+				if (e.Column == PowerColumn && (int)e.ProposedValue < 1)
+					throw new Exception("Please enter a valid power level (Min 1%)");
 				if (e.Column == PowerColumn && (int)e.ProposedValue > 100)
 					throw new Exception("Please enter a valid power level (Max 100%)");
 
@@ -134,6 +134,13 @@ namespace LaserGRBL.PSHelper
 			catch { }
 
 			rv.Materials.AcceptChanges();
+
+			if (rv.GetNewCount() > 0)
+			{
+				rv.ImportServer(); //carica da file aggiornato
+				rv.SaveChanges(); //salva se c'é qualche aggiornamento
+			}
+
 			return rv;
 		}
 
@@ -172,6 +179,6 @@ namespace LaserGRBL.PSHelper
 
 
 		private static string UserFile { get => System.IO.Path.Combine(LaserGRBL.GrblCore.DataPath, "UserMaterials.psh"); }
-		private static string ServerFile { get => System.IO.Path.Combine(LaserGRBL.GrblCore.ExePath, "StandardMaterials.psh"); }
+		public static string ServerFile { get => System.IO.Path.Combine(LaserGRBL.GrblCore.DataPath, "StandardMaterials.psh"); }
 	}
 }

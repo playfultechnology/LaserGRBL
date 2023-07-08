@@ -16,6 +16,8 @@ namespace LaserGRBL.RasterConverter
 	/// </summary>
 	public partial class ConvertSizeAndOptionForm : Form
 	{
+		static bool ratiolock = true;
+
 		GrblCore mCore;
 		bool supportPWM = Settings.GetObject("Support Hardware PWM", true);
 
@@ -48,45 +50,42 @@ namespace LaserGRBL.RasterConverter
 
 			CBLaserON.Items.Add(LaserOptions[0]);
 			CBLaserON.Items.Add(LaserOptions[1]);
-
-			// For Marlin, we must change LaserOn & Laser Off command :
-			//if (core.Type != Firmware.Marlin)
-			//{
-			//    CBLaserON.Items.Add("M3");
-			//    if (core.Configuration.LaserMode)
-			//        CBLaserON.Items.Add("M4");
-			//}
-			//else
-			//{
-			//    CBLaserON.Items.Add("M106 P1");
-			//    CBLaserOFF.Items.Add("M107 P1");
-			//}
 		}
 
 		private void AssignMinMaxLimit()
 		{
-			IISizeW.MaxValue = (int)mCore.Configuration.TableWidth;
-			IISizeH.MaxValue = (int)mCore.Configuration.TableHeight;
+			int tableWidth = 1000;
+			int tableHeight = 1000;
 
-			IIOffsetX.MaxValue = (int)mCore.Configuration.TableWidth;
-			IIOffsetY.MaxValue = (int)mCore.Configuration.TableHeight;
-
-			if (mCore?.Configuration != null)
+			try
 			{
-				if (mCore.Configuration.SoftLimit)
+				tableWidth = (int)GrblCore.Configuration.TableWidth;
+				tableHeight = (int)GrblCore.Configuration.TableHeight;
+			}
+			catch (Exception ex) { MessageBox.Show(Strings.BoxMachineSizeOutOfRangeText, Strings.BoxMachineSizeOutOfRangeTitle, MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+			IISizeW.MaxValue = tableWidth;
+			IISizeH.MaxValue = tableHeight;
+
+			IIOffsetX.MaxValue = tableWidth;
+			IIOffsetY.MaxValue = tableHeight;
+
+			if (GrblCore.Configuration != null)
+			{
+				if (GrblCore.Configuration.SoftLimit)
 				{
 					IIOffsetX.MinValue = 0;
 					IIOffsetY.MinValue = 0;
 				}
 				else
 				{
-					IIOffsetX.MinValue = -(int)mCore.Configuration.TableWidth;
-					IIOffsetY.MinValue = -(int)mCore.Configuration.TableHeight;
+					IIOffsetX.MinValue = -tableWidth;
+					IIOffsetY.MinValue = -tableHeight;
 				}
 			}
 
-			IIBorderTracing.MaxValue = IILinearFilling.MaxValue = (int)mCore.Configuration.MaxRateX;
-			IIMaxPower.MaxValue = (int)mCore.Configuration.MaxPWM;
+			IIBorderTracing.MaxValue = IILinearFilling.MaxValue = (int)GrblCore.Configuration.MaxRateX;
+			IIMaxPower.MaxValue = (int)GrblCore.Configuration.MaxPWM;
 		}
 
 		ImageProcessor IP;
@@ -102,20 +101,15 @@ namespace LaserGRBL.RasterConverter
 
 			IP.LaserOn = Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.LaserOn", "M3");
 
-			if (IP.LaserOn == "M3" || !mCore.Configuration.LaserMode)
+			if (IP.LaserOn == "M3" || !GrblCore.Configuration.LaserMode)
 				CBLaserON.SelectedItem = LaserOptions[0];
 			else
 				CBLaserON.SelectedItem = LaserOptions[1];
 
-			IP.LaserOff = "M5"; //Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.LaserOff", "M5");
-
-			//if (CBLaserOFF.Items.Contains(IP.LaserOff))
-			//	CBLaserOFF.SelectedItem = IP.LaserOff;
-			//else
-			//	CBLaserOFF.SelectedIndex = 0;
+			IP.LaserOff = "M5"; 
 
 			IIMinPower.CurrentValue = IP.MinPower = Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMin", 0);
-			IIMaxPower.CurrentValue = IP.MaxPower = Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", (int)mCore.Configuration.MaxPWM);
+			IIMaxPower.CurrentValue = IP.MaxPower = Settings.GetObject("GrayScaleConversion.Gcode.LaserOptions.PowerMax", (int)GrblCore.Configuration.MaxPWM);
 
 			IILinearFilling.Visible = LblLinearFilling.Visible = LblLinearFillingmm.Visible = (IP.SelectedTool == ImageProcessor.Tool.NoProcessing || IP.SelectedTool == ImageProcessor.Tool.Line2Line || IP.SelectedTool == ImageProcessor.Tool.Dithering || (IP.SelectedTool == ImageProcessor.Tool.Vectorize && (IP.FillingDirection != ImageProcessor.Direction.None)));
 			IIBorderTracing.Visible = LblBorderTracing.Visible = LblBorderTracingmm.Visible = (IP.SelectedTool == ImageProcessor.Tool.Vectorize || IP.SelectedTool == ImageProcessor.Tool.Centerline);
@@ -126,6 +120,8 @@ namespace LaserGRBL.RasterConverter
 
 			RefreshPerc();
 			ShowDialog(parent);
+
+			ratiolock = KeepSizeRatio;
 		}
 
 		private void InitImageSize()
@@ -139,15 +135,24 @@ namespace LaserGRBL.RasterConverter
 			}
 			else
 			{
-				if (IP.Original.Height < IP.Original.Width)
+				KeepSizeRatio = ratiolock;
+				if (KeepSizeRatio)
 				{
-					IISizeW.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.BiggestDimension", 100F);
-					IISizeH.CurrentValue = IP.WidthToHeight(IISizeW.CurrentValue);
+					if (IP.Original.Height < IP.Original.Width)
+					{
+						IISizeW.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.ImageSize.W", 100F);
+						IISizeH.CurrentValue = IP.WidthToHeight(IISizeW.CurrentValue);
+					}
+					else
+					{
+						IISizeH.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.ImageSize.H", 100F);
+						IISizeW.CurrentValue = IP.HeightToWidht(IISizeH.CurrentValue);
+					}
 				}
 				else
 				{
-					IISizeH.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.BiggestDimension", 100F);
-					IISizeW.CurrentValue = IP.HeightToWidht(IISizeH.CurrentValue);
+					IISizeW.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.ImageSize.W", 100F);
+					IISizeH.CurrentValue = Settings.GetObject("GrayScaleConversion.Gcode.ImageSize.H", 100F);
 				}
 			}
 		}
@@ -195,12 +200,12 @@ namespace LaserGRBL.RasterConverter
 
 		private void RefreshPerc()
 		{
-			decimal maxpwm = mCore?.Configuration != null ? mCore.Configuration.MaxPWM : -1;
+			decimal maxpwm = GrblCore.Configuration != null ? GrblCore.Configuration.MaxPWM : -1;
 
 			if (maxpwm > 0)
 			{
-				LblMaxPerc.Text = (IIMaxPower.CurrentValue / mCore.Configuration.MaxPWM).ToString("P1");
-				LblMinPerc.Text = (IIMinPower.CurrentValue / mCore.Configuration.MaxPWM).ToString("P1");
+				LblMaxPerc.Text = (IIMaxPower.CurrentValue / GrblCore.Configuration.MaxPWM).ToString("P1");
+				LblMinPerc.Text = (IIMinPower.CurrentValue / GrblCore.Configuration.MaxPWM).ToString("P1");
 			}
 			else
 			{
@@ -225,7 +230,7 @@ namespace LaserGRBL.RasterConverter
 
 			if (mode != null)
 			{
-				if (!mCore.Configuration.LaserMode && (mode.Value as string) == "M4")
+				if (!GrblCore.Configuration.LaserMode && (mode.Value as string) == "M4")
 					MessageBox.Show(Strings.WarnWrongLaserMode, Strings.WarnWrongLaserModeTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);//warning!!
 
 				IP.LaserOn = mode.Value as string;
@@ -241,13 +246,26 @@ namespace LaserGRBL.RasterConverter
 
 		private void IISizeW_OnTheFlyValueChanged(object sender, float OldValue, float NewValue, bool ByUser)
 		{
-			if (ByUser)
+			if (ByUser && KeepSizeRatio)
 				IISizeH.CurrentValue = IP.WidthToHeight(NewValue);
 		}
 
 		private void IISizeH_OnTheFlyValueChanged(object sender, float OldValue, float NewValue, bool ByUser)
 		{
-			if (ByUser) IISizeW.CurrentValue = IP.HeightToWidht(NewValue);
+			if (ByUser && KeepSizeRatio)
+				IISizeW.CurrentValue = IP.HeightToWidht(NewValue);
+		}
+
+		private bool KeepSizeRatio
+		{
+			get
+			{
+				return !BtnUnlockProportion.UseAltImage;
+			}
+			set
+			{
+				BtnUnlockProportion.UseAltImage = !value;
+			}
 		}
 
 		private void CbAutosize_CheckedChanged(object sender, EventArgs e)
@@ -302,14 +320,14 @@ namespace LaserGRBL.RasterConverter
 
 		private bool ConfirmOutOfBoundary()
 		{
-			if (mCore?.Configuration != null && !Settings.GetObject("DisableBoundaryWarning", false))
+			if (GrblCore.Configuration != null && !Settings.GetObject("DisableBoundaryWarning", false))
 			{
-				if ((IIOffsetX.CurrentValue < 0 || IIOffsetY.CurrentValue < 0) && mCore.Configuration.SoftLimit)
+				if ((IIOffsetX.CurrentValue < 0 || IIOffsetY.CurrentValue < 0) && GrblCore.Configuration.SoftLimit)
 					if (MessageBox.Show(Strings.WarnSoftLimitNS, Strings.WarnSoftLimitTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
 						return false;
 
-				if (Math.Max(IIOffsetX.CurrentValue, 0) + IISizeW.CurrentValue > (float)mCore.Configuration.TableWidth || Math.Max(IIOffsetY.CurrentValue, 0) + IISizeH.CurrentValue > (float)mCore.Configuration.TableHeight)
-					if (MessageBox.Show(String.Format(Strings.WarnSoftLimitOOB, (int)mCore.Configuration.TableWidth, (int)mCore.Configuration.TableHeight), Strings.WarnSoftLimitTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+				if (Math.Max(IIOffsetX.CurrentValue, 0) + IISizeW.CurrentValue > (float)GrblCore.Configuration.TableWidth || Math.Max(IIOffsetY.CurrentValue, 0) + IISizeH.CurrentValue > (float)GrblCore.Configuration.TableHeight)
+					if (MessageBox.Show(String.Format(Strings.WarnSoftLimitOOB, (int)GrblCore.Configuration.TableWidth, (int)GrblCore.Configuration.TableHeight), Strings.WarnSoftLimitTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
 						return false;
 			}
 
@@ -326,6 +344,22 @@ namespace LaserGRBL.RasterConverter
 		{
 			IIOffsetY.CurrentValue = -(IISizeH.CurrentValue / 2);
 			IIOffsetX.CurrentValue = -(IISizeW.CurrentValue / 2);
+		}
+
+		private void BtnUnlockProportion_Click(object sender, EventArgs e)
+		{
+			if (KeepSizeRatio && MessageBox.Show(Strings.WarnUnlockProportionText, Strings.WarnUnlockProportionTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+				KeepSizeRatio = false;
+			else
+				KeepSizeRatio = true;
+			
+			if (KeepSizeRatio)
+			{
+				if (IP.Original.Height < IP.Original.Width)
+					IISizeH.CurrentValue = IP.WidthToHeight(IISizeW.CurrentValue);
+				else
+					IISizeW.CurrentValue = IP.HeightToWidht(IISizeH.CurrentValue);
+			}
 		}
 	}
 }
