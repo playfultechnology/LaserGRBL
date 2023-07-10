@@ -109,7 +109,7 @@ namespace LaserGRBL {
             float squareHeight = (float)numericUpDown_EngraveSquareHeight.Value;
             float padding = (float)numericUpDown_EngraveSquareSpacing.Value;
             string engravingMode = radioButton_EngraveMode_M4.Checked ? "M4" : "M3";
-            float y_increment = (float)squareHeight / (float)numericUpDown_EngraveLineInterval.Value;
+            float y_increment = 1.0f / (float)numericUpDown_EngraveLineInterval.Value;
 
             // Draw the squares
             for (int F = 0; F < numericUpDown_EngraveSpeedSteps.Value + 1; F++)
