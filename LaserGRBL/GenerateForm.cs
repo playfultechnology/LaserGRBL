@@ -50,6 +50,9 @@ namespace LaserGRBL {
             //float squareWidth = 8, squareHeight = 3;
             //float padding = 1;
 
+            string cutMode = radioButton_CutMode_M4.Checked ? "M4" : "M3";
+
+
             float squareWidth = (float)numericUpDown_SquaresWidth.Value;
             float squareHeight = (float)numericUpDown_SquaresHeight.Value;
             float padding = (float)numericUpDown_SquaresSpacing.Value;
@@ -60,17 +63,17 @@ namespace LaserGRBL {
                 for (int S = 0; S < numericUpDown_SquaresPowerSteps.Value + 1; S++) {
                     gcodeString.AppendLine(";Square" + S.ToString());
                     // Fast travel to bottom left corner
-                    gcodeString.AppendLine(String.Format("G0 X{0}Y{1}", S*(squareWidth+padding), F*(squareHeight + padding)));
+                    gcodeString.AppendLine(String.Format("G0 X{0:F}Y{1:F}", S*(squareWidth+padding), F*(squareHeight + padding)));
                     // Turn on the laser
-                    gcodeString.AppendLine(String.Format("M3 S{0}", numericUpDown_SquaresPowerMin.Value + S*powerIncrement));
+                    gcodeString.AppendLine(String.Format("{0} S{1:F}", cutMode, numericUpDown_SquaresPowerMin.Value + S*powerIncrement));
                     // Move right at defined speed
-                    gcodeString.AppendLine(String.Format("G1 X{0} F{1}", S*(squareWidth+padding) + squareWidth, numericUpDown_SquaresSpeedMin.Value + F*speedIncrement));
+                    gcodeString.AppendLine(String.Format("G1 X{0:F} F{1:F}", S*(squareWidth+padding) + squareWidth, numericUpDown_SquaresSpeedMin.Value + F*speedIncrement));
                     // Up
-                    gcodeString.AppendLine(String.Format("Y{0}", F*(squareHeight + padding) + squareHeight));
+                    gcodeString.AppendLine(String.Format("Y{0:F}", F*(squareHeight + padding) + squareHeight));
                     // Left
-                    gcodeString.AppendLine(String.Format("X{0}", S*(squareWidth + padding)));
+                    gcodeString.AppendLine(String.Format("X{0:F}", S*(squareWidth + padding)));
                     // Down
-                    gcodeString.AppendLine(String.Format("Y{0}",  F*(squareHeight + padding)));
+                    gcodeString.AppendLine(String.Format("Y{0:F}",  F*(squareHeight + padding)));
                     // Turn off
                     gcodeString.AppendLine("M5 S0");
                 }
@@ -101,13 +104,12 @@ namespace LaserGRBL {
 
             StringBuilder gcodeString = new StringBuilder();
 
-            //float squareWidth = 8, squareHeight = 3;
-            //float padding = 1;
-
+            // Retrieve form values
             float squareWidth = (float)numericUpDown_EngraveSquareWidth.Value;
             float squareHeight = (float)numericUpDown_EngraveSquareHeight.Value;
             float padding = (float)numericUpDown_EngraveSquareSpacing.Value;
-
+            string engravingMode = radioButton_EngraveMode_M4.Checked ? "M4" : "M3";
+            float y_increment = (float)squareHeight / (float)numericUpDown_EngraveLineInterval.Value;
 
             // Draw the squares
             for (int F = 0; F < numericUpDown_EngraveSpeedSteps.Value + 1; F++)
@@ -117,22 +119,23 @@ namespace LaserGRBL {
                     gcodeString.AppendLine(";Square" + S.ToString());
 
                     // Fast travel to bottom left corner
-                    gcodeString.AppendLine(String.Format("G0 X{0}Y{1}", S * (squareWidth + padding), F * (squareHeight + padding)));
+                    gcodeString.AppendLine(String.Format("G0 X{0:F}Y{1:F}", S * (squareWidth + padding), F * (squareHeight + padding)));
                     // Turn on the laser
-                    gcodeString.AppendLine(String.Format("M3 S{0}", numericUpDown_SquaresPowerMin.Value + S * powerIncrement));
+                    gcodeString.AppendLine(String.Format("{0} S{1:F}", engravingMode, numericUpDown_EngravePowerMin.Value + S * powerIncrement));
 
-                    float y_increment = (float)squareHeight / (float)numericUpDown_EngraveLineInterval.Value;
+                    float dir = 0;
 
-                    for (float h = 0; h < squareHeight; h += y_increment)
+                    // Draw first line across
+                    gcodeString.AppendLine(String.Format("G1 X{0} F{1:F}", S * (squareWidth + padding) + squareWidth, numericUpDown_EngraveSpeedMin.Value + F * speedIncrement));
+
+                    for (float h = y_increment; h < squareHeight; h += y_increment)
                     {
-                        // Move right at defined speed
-                        gcodeString.AppendLine(String.Format("G1 X{0} F{1}", S * (squareWidth + padding) + squareWidth, numericUpDown_SquaresSpeedMin.Value + F * speedIncrement));
                         // Up
-                        gcodeString.AppendLine(String.Format("Y{0}", F * (squareHeight + padding) + h));
-                        // Left
-                        gcodeString.AppendLine(String.Format("X{0}", S * (squareWidth + padding)));
-                        // Up
-                        gcodeString.AppendLine(String.Format("Y{0}", F * (squareHeight + padding) + h));
+                        gcodeString.AppendLine(String.Format("G1 Y{0:F}", F * (squareHeight + padding) + h));
+                        // Across
+                        gcodeString.AppendLine(String.Format("G1 X{0} F{1:F}", S * (squareWidth + padding) + (dir * squareWidth), numericUpDown_EngraveSpeedMin.Value + F * speedIncrement));
+                        // Toggle Direction
+                        dir = 1 - dir;
                     }
 
                     // Turn off
@@ -149,12 +152,15 @@ namespace LaserGRBL {
             // X axis title
             gcodeString.AppendLine(CreateGcodeFromText("Power", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_EngravePowerSteps.Value) * (squareWidth + padding) / 2, (float)(numericUpDown_EngraveSpeedSteps.Value + 2) * (squareHeight + padding)), ContentAlignment.MiddleCenter, 100, 2000, "M4"));
 
+            gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:N} lines/mm", numericUpDown_EngraveLineInterval.Value), new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF(0, 6+(float)(numericUpDown_EngraveSpeedSteps.Value + 1) * (squareHeight + padding)), ContentAlignment.MiddleLeft, 100, 2000));
+
+
             // Y axis labels
             for (int F = 0; F < numericUpDown_EngraveSpeedSteps.Value + 1; F++)
             {
                 gcodeString.AppendLine(CreateGcodeFromText(string.Format("{0:0.#}", (decimal)numericUpDown_EngraveSpeedMin.Value + F * speedIncrement), new FontFamily("Microsoft Sans Serif"), 0, 6, new PointF((float)(numericUpDown_EngravePowerSteps.Value + 1) * (squareWidth + padding), (float)(F * (squareHeight + padding) + squareHeight / 2)), ContentAlignment.MiddleLeft, 100, 2000, "M4"));
             }
-            // X axis title
+            // Y axis title
             gcodeString.AppendLine(CreateGcodeFromText("Speed", new FontFamily("Microsoft Sans Serif"), 0, 8, new PointF((float)(numericUpDown_EngravePowerSteps.Value + 2) * (squareWidth + padding), (float)(numericUpDown_EngraveSpeedSteps.Value + 1) / 2 * (squareHeight + padding)), ContentAlignment.BottomLeft, 100, 2000, "M4"));
 
             mCore.OpenString(gcodeString.ToString());

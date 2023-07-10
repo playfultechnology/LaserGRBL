@@ -137,6 +137,11 @@
     <Compile Include="GenerateForm.Designer.cs">
       <DependentUpon>GenerateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Project.cs" />
     <Compile Include="Core\VigoCore.cs" />
     <Compile Include="CsPotrace\PotraceClipper.cs" />
@@ -936,6 +941,10 @@
     <EmbeddedResource Include="CSV\setting_codes.ortur.GrblHal.csv" />
     <EmbeddedResource Include="CSV\alarm_codes.ortur.GrblHal.csv" />
     <EmbeddedResource Include="CSV\error_codes.ortur.GrblHal.csv" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\flag_greece.png" />
     <Content Include="Grafica\777494-200.png" />
     <Content Include="Grafica\info.png" />
