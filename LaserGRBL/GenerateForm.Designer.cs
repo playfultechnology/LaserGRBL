@@ -41,6 +41,10 @@
             this.numericUpDown__NumLines = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton_CutMode_M3 = new System.Windows.Forms.RadioButton();
+            this.radioButton_CutMode_M4 = new System.Windows.Forms.RadioButton();
+            this.label42 = new System.Windows.Forms.Label();
             this.numericUpDown_SquaresWidth = new System.Windows.Forms.NumericUpDown();
             this.label25 = new System.Windows.Forms.Label();
             this.numericUpDown_SquaresSpacing = new System.Windows.Forms.NumericUpDown();
@@ -89,6 +93,10 @@
             this.BtnGenerate_Text = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Mode = new System.Windows.Forms.Panel();
+            this.radioButton_EngraveMode_M3 = new System.Windows.Forms.RadioButton();
+            this.radioButton_EngraveMode_M4 = new System.Windows.Forms.RadioButton();
+            this.label41 = new System.Windows.Forms.Label();
             this.label_EngraveDPI = new System.Windows.Forms.Label();
             this.label_EngraveLineInterval = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
@@ -117,14 +125,6 @@
             this.label36 = new System.Windows.Forms.Label();
             this.numericUpDown_EngravePowerSteps = new System.Windows.Forms.NumericUpDown();
             this.label37 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.radioButton_EngraveMode_M3 = new System.Windows.Forms.RadioButton();
-            this.radioButton_EngraveMode_M4 = new System.Windows.Forms.RadioButton();
-            this.Mode = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton_CutMode_M3 = new System.Windows.Forms.RadioButton();
-            this.radioButton_CutMode_M4 = new System.Windows.Forms.RadioButton();
-            this.label42 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineSpeed)).BeginInit();
@@ -133,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_lineLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown__NumLines)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).BeginInit();
@@ -150,6 +151,7 @@
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.Mode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveLineInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareSpacing)).BeginInit();
@@ -160,8 +162,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedSteps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerSteps)).BeginInit();
-            this.Mode.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -202,7 +202,7 @@
             // 
             // numericUpDown_lineSpeed
             // 
-            this.numericUpDown_lineSpeed.Location = new System.Drawing.Point(279, 139);
+            this.numericUpDown_lineSpeed.Location = new System.Drawing.Point(208, 139);
             this.numericUpDown_lineSpeed.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -235,7 +235,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(326, 141);
+            this.label19.Location = new System.Drawing.Point(255, 141);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(44, 13);
             this.label19.TabIndex = 62;
@@ -265,7 +265,7 @@
             // 
             // numericUpDown_lineSpacing
             // 
-            this.numericUpDown_lineSpacing.DecimalPlaces = 4;
+            this.numericUpDown_lineSpacing.DecimalPlaces = 3;
             this.numericUpDown_lineSpacing.Increment = new decimal(new int[] {
             1,
             0,
@@ -279,7 +279,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             // 
             // numericUpDown_lineLength
             // 
@@ -302,7 +302,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(209, 141);
+            this.label18.Location = new System.Drawing.Point(133, 141);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(69, 13);
             this.label18.TabIndex = 58;
@@ -412,6 +412,46 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cut";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton_CutMode_M3);
+            this.panel1.Controls.Add(this.radioButton_CutMode_M4);
+            this.panel1.Location = new System.Drawing.Point(366, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(110, 48);
+            this.panel1.TabIndex = 79;
+            // 
+            // radioButton_CutMode_M3
+            // 
+            this.radioButton_CutMode_M3.AutoSize = true;
+            this.radioButton_CutMode_M3.Location = new System.Drawing.Point(12, 14);
+            this.radioButton_CutMode_M3.Name = "radioButton_CutMode_M3";
+            this.radioButton_CutMode_M3.Size = new System.Drawing.Size(40, 17);
+            this.radioButton_CutMode_M3.TabIndex = 75;
+            this.radioButton_CutMode_M3.Text = "M3";
+            this.radioButton_CutMode_M3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_CutMode_M4
+            // 
+            this.radioButton_CutMode_M4.AutoSize = true;
+            this.radioButton_CutMode_M4.Checked = true;
+            this.radioButton_CutMode_M4.Location = new System.Drawing.Point(58, 14);
+            this.radioButton_CutMode_M4.Name = "radioButton_CutMode_M4";
+            this.radioButton_CutMode_M4.Size = new System.Drawing.Size(40, 17);
+            this.radioButton_CutMode_M4.TabIndex = 76;
+            this.radioButton_CutMode_M4.TabStop = true;
+            this.radioButton_CutMode_M4.Text = "M4";
+            this.radioButton_CutMode_M4.UseVisualStyleBackColor = true;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(326, 26);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(34, 13);
+            this.label42.TabIndex = 78;
+            this.label42.Text = "Mode";
             // 
             // numericUpDown_SquaresWidth
             // 
@@ -1045,23 +1085,65 @@
             this.tabPage4.Text = "Engrave";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // Mode
+            // 
+            this.Mode.Controls.Add(this.radioButton_EngraveMode_M3);
+            this.Mode.Controls.Add(this.radioButton_EngraveMode_M4);
+            this.Mode.Location = new System.Drawing.Point(329, 7);
+            this.Mode.Name = "Mode";
+            this.Mode.Size = new System.Drawing.Size(110, 48);
+            this.Mode.TabIndex = 77;
+            // 
+            // radioButton_EngraveMode_M3
+            // 
+            this.radioButton_EngraveMode_M3.AutoSize = true;
+            this.radioButton_EngraveMode_M3.Location = new System.Drawing.Point(12, 14);
+            this.radioButton_EngraveMode_M3.Name = "radioButton_EngraveMode_M3";
+            this.radioButton_EngraveMode_M3.Size = new System.Drawing.Size(40, 17);
+            this.radioButton_EngraveMode_M3.TabIndex = 75;
+            this.radioButton_EngraveMode_M3.Text = "M3";
+            this.radioButton_EngraveMode_M3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_EngraveMode_M4
+            // 
+            this.radioButton_EngraveMode_M4.AutoSize = true;
+            this.radioButton_EngraveMode_M4.Checked = true;
+            this.radioButton_EngraveMode_M4.Location = new System.Drawing.Point(58, 14);
+            this.radioButton_EngraveMode_M4.Name = "radioButton_EngraveMode_M4";
+            this.radioButton_EngraveMode_M4.Size = new System.Drawing.Size(40, 17);
+            this.radioButton_EngraveMode_M4.TabIndex = 76;
+            this.radioButton_EngraveMode_M4.TabStop = true;
+            this.radioButton_EngraveMode_M4.Text = "M4";
+            this.radioButton_EngraveMode_M4.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(289, 21);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(34, 13);
+            this.label41.TabIndex = 74;
+            this.label41.Text = "Mode";
+            // 
             // label_EngraveDPI
             // 
             this.label_EngraveDPI.AutoSize = true;
-            this.label_EngraveDPI.Location = new System.Drawing.Point(443, 131);
+            this.label_EngraveDPI.Location = new System.Drawing.Point(462, 131);
             this.label_EngraveDPI.Name = "label_EngraveDPI";
-            this.label_EngraveDPI.Size = new System.Drawing.Size(10, 13);
+            this.label_EngraveDPI.Size = new System.Drawing.Size(25, 13);
             this.label_EngraveDPI.TabIndex = 72;
-            this.label_EngraveDPI.Text = "-";
+            this.label_EngraveDPI.Text = "254";
+            this.label_EngraveDPI.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label_EngraveLineInterval
             // 
             this.label_EngraveLineInterval.AutoSize = true;
-            this.label_EngraveLineInterval.Location = new System.Drawing.Point(443, 109);
+            this.label_EngraveLineInterval.Location = new System.Drawing.Point(465, 109);
             this.label_EngraveLineInterval.Name = "label_EngraveLineInterval";
-            this.label_EngraveLineInterval.Size = new System.Drawing.Size(10, 13);
+            this.label_EngraveLineInterval.Size = new System.Drawing.Size(22, 13);
             this.label_EngraveLineInterval.TabIndex = 71;
-            this.label_EngraveLineInterval.Text = "-";
+            this.label_EngraveLineInterval.Text = "0.1";
+            this.label_EngraveLineInterval.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label40
             // 
@@ -1251,7 +1333,7 @@
             this.numericUpDown_EngravePowerMax.Size = new System.Drawing.Size(56, 20);
             this.numericUpDown_EngravePowerMax.TabIndex = 50;
             this.numericUpDown_EngravePowerMax.Value = new decimal(new int[] {
-            1000,
+            900,
             0,
             0,
             0});
@@ -1336,7 +1418,7 @@
             this.numericUpDown_EngraveSpeedSteps.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown_EngraveSpeedSteps.TabIndex = 42;
             this.numericUpDown_EngraveSpeedSteps.Value = new decimal(new int[] {
-            8,
+            4,
             0,
             0,
             0});
@@ -1389,7 +1471,7 @@
             this.numericUpDown_EngravePowerSteps.Size = new System.Drawing.Size(40, 20);
             this.numericUpDown_EngravePowerSteps.TabIndex = 35;
             this.numericUpDown_EngravePowerSteps.Value = new decimal(new int[] {
-            9,
+            4,
             0,
             0,
             0});
@@ -1403,86 +1485,6 @@
             this.label37.TabIndex = 33;
             this.label37.Text = "Generate a series of box outlines, in a range of power/speeds\r\nUseful for:\r\n- Che" +
     "cking scaling in y/x axes\r\n- Determining optimum speed/power for cutting\r\n";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(289, 21);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(34, 13);
-            this.label41.TabIndex = 74;
-            this.label41.Text = "Mode";
-            // 
-            // radioButton_EngraveMode_M3
-            // 
-            this.radioButton_EngraveMode_M3.AutoSize = true;
-            this.radioButton_EngraveMode_M3.Location = new System.Drawing.Point(12, 14);
-            this.radioButton_EngraveMode_M3.Name = "radioButton_EngraveMode_M3";
-            this.radioButton_EngraveMode_M3.Size = new System.Drawing.Size(40, 17);
-            this.radioButton_EngraveMode_M3.TabIndex = 75;
-            this.radioButton_EngraveMode_M3.Text = "M3";
-            this.radioButton_EngraveMode_M3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_EngraveMode_M4
-            // 
-            this.radioButton_EngraveMode_M4.AutoSize = true;
-            this.radioButton_EngraveMode_M4.Checked = true;
-            this.radioButton_EngraveMode_M4.Location = new System.Drawing.Point(58, 14);
-            this.radioButton_EngraveMode_M4.Name = "radioButton_EngraveMode_M4";
-            this.radioButton_EngraveMode_M4.Size = new System.Drawing.Size(40, 17);
-            this.radioButton_EngraveMode_M4.TabIndex = 76;
-            this.radioButton_EngraveMode_M4.TabStop = true;
-            this.radioButton_EngraveMode_M4.Text = "M4";
-            this.radioButton_EngraveMode_M4.UseVisualStyleBackColor = true;
-            // 
-            // Mode
-            // 
-            this.Mode.Controls.Add(this.radioButton_EngraveMode_M3);
-            this.Mode.Controls.Add(this.radioButton_EngraveMode_M4);
-            this.Mode.Location = new System.Drawing.Point(329, 7);
-            this.Mode.Name = "Mode";
-            this.Mode.Size = new System.Drawing.Size(110, 48);
-            this.Mode.TabIndex = 77;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.radioButton_CutMode_M3);
-            this.panel1.Controls.Add(this.radioButton_CutMode_M4);
-            this.panel1.Location = new System.Drawing.Point(366, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(110, 48);
-            this.panel1.TabIndex = 79;
-            // 
-            // radioButton_CutMode_M3
-            // 
-            this.radioButton_CutMode_M3.AutoSize = true;
-            this.radioButton_CutMode_M3.Location = new System.Drawing.Point(12, 14);
-            this.radioButton_CutMode_M3.Name = "radioButton_CutMode_M3";
-            this.radioButton_CutMode_M3.Size = new System.Drawing.Size(40, 17);
-            this.radioButton_CutMode_M3.TabIndex = 75;
-            this.radioButton_CutMode_M3.Text = "M3";
-            this.radioButton_CutMode_M3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_CutMode_M4
-            // 
-            this.radioButton_CutMode_M4.AutoSize = true;
-            this.radioButton_CutMode_M4.Checked = true;
-            this.radioButton_CutMode_M4.Location = new System.Drawing.Point(58, 14);
-            this.radioButton_CutMode_M4.Name = "radioButton_CutMode_M4";
-            this.radioButton_CutMode_M4.Size = new System.Drawing.Size(40, 17);
-            this.radioButton_CutMode_M4.TabIndex = 76;
-            this.radioButton_CutMode_M4.TabStop = true;
-            this.radioButton_CutMode_M4.Text = "M4";
-            this.radioButton_CutMode_M4.UseVisualStyleBackColor = true;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(326, 26);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(34, 13);
-            this.label42.TabIndex = 78;
-            this.label42.Text = "Mode";
             // 
             // GenerateForm
             // 
@@ -1502,6 +1504,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown__NumLines)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresSpacing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SquaresHeight)).EndInit();
@@ -1523,6 +1527,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.Mode.ResumeLayout(false);
+            this.Mode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveLineInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSquareSpacing)).EndInit();
@@ -1533,10 +1539,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngraveSpeedSteps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_EngravePowerSteps)).EndInit();
-            this.Mode.ResumeLayout(false);
-            this.Mode.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
