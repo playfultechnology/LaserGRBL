@@ -1,6 +1,11 @@
 # LaserGRBL [![Donation](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?business=4WQX8HUBXRVUU&no_recurring=0&item_name=LaserGRBL&currency_code=EUR)
 Official website [http://lasergrbl.com](http://lasergrbl.com)
 
+This is a fork with added functionality to generate various engraving/cut tests to assist with power/speed calibration:
+<img src="test_squares.jpg" />
+<img src="test_text.jpg" />
+
+
 LaserGRBL is a Windows GUI for [GRBL](https://github.com/gnea/grbl/wiki). Unlike other GUI LaserGRBL it is specifically developed for use with laser cutter and engraver. In order to use all of LaserGRBL feature, your engraver must supports laser power modulation through gcode "S" command. LaserGRBL is compatible with [Grbl v0.9](https://github.com/grbl/grbl/) and [Grbl v1.1](https://github.com/gnea/grbl/)
 
 All downloads available at https://github.com/arkypita/LaserGRBL/releases
